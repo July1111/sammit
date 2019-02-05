@@ -23,6 +23,7 @@ namespace sammitApp
         public MainWindow()
         {
             InitializeComponent();
+            ///asdsadasdasd
         }
     }
 }
