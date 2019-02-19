@@ -24,7 +24,6 @@ namespace sammitApp
         {
             InitializeComponent();
             ///asdsadasdasdфывфывфывф
-            ///2ковыаываыв
         }
     }
 }
