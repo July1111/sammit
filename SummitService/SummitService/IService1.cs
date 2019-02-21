@@ -11,8 +11,9 @@ namespace SummitService
     [ServiceContract]
     public interface IService1
     {
-
         [OperationContract]
-        string GetData(int value);
+        Auth Authorisation(string Login, string Password);
+
+
     }
 }
