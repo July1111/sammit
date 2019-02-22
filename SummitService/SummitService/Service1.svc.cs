@@ -142,7 +142,6 @@ namespace SummitService
                 connection.Close();
             }
         }
-
     }
 }
 
@@ -158,3 +157,10 @@ namespace SummitService
         public string error_message;
         public int id_user;
     }
+
+    public class Country
+    {
+        public string Name;
+    }
+
+
