@@ -142,10 +142,100 @@ namespace SummitService
                 connection.Close();
             }
         }
+
+        public void AddCountry(Country country)
+        {
+            string sqlExpression = "AddCountry";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter CountryNameParamet = new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    Value = country.Name
+                };
+                command.Parameters.Add(CountryNameParamet);
+
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
+
+        public void AddVariant(Variant variant)
+        {
+            string sqlExpression = "AddVariant";
+            string dateS = variant.StartDate.ToString("ds");
+            string dateF = variant.FinishDate.ToString("df");
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter DateStart = new SqlParameter
+                {
+                    ParameterName = "@StartDate",
+                    Value = variant.StartDate
+                };
+                command.Parameters.Add(DateStart);
+
+                SqlParameter DateFinish = new SqlParameter
+                {
+                    ParameterName = "@FinishDate",
+                    Value = variant.FinishDate
+                };
+                command.Parameters.Add(DateFinish);
+
+
+                SqlParameter country_idParam = new SqlParameter
+                {
+                    ParameterName = "@Country_ID",
+                    Value = variant.country_id
+                };
+                command.Parameters.Add(country_idParam);
+
+
+                SqlParameter user_idParam = new SqlParameter
+                {
+                    ParameterName = "@User_ID",
+                    Value = variant.user_id
+                };
+                command.Parameters.Add(user_idParam);
+
+
+                SqlParameter summit_idParam = new SqlParameter
+                {
+                    ParameterName = "@Summit_ID",
+                    Value = variant.summit_id
+                };
+                command.Parameters.Add(summit_idParam);
+
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
     }
+
 }
 
-    public class Summit
+    public class Variant
+    {
+        public DateTime StartDate;
+        public DateTime FinishDate;
+        public int country_id;
+        public int user_id;
+        public int summit_id;
+    }
+
+public class Summit
     {
         public string Name;
         public DateTime Date;
@@ -162,5 +252,7 @@ namespace SummitService
     {
         public string Name;
     }
+
+
 
 

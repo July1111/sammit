@@ -19,5 +19,8 @@ namespace SummitService
 
         [OperationContract]
         void AddCountry(Country country);
+
+        [OperationContract]
+        void AddVariant(Variant variant);
     }
 }
