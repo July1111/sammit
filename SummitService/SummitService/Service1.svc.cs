@@ -154,12 +154,12 @@ namespace SummitService
                     CommandType = System.Data.CommandType.StoredProcedure
                 };
 
-                SqlParameter CountryNameParam = new SqlParameter
+                SqlParameter CountryNameParamet = new SqlParameter
                 {
                     ParameterName = "@Name",
                     Value = country.Name
                 };
-                command.Parameters.Add(CountryNameParam);
+                command.Parameters.Add(CountryNameParamet);
 
                 var result = command.ExecuteScalar();
                 connection.Close();
