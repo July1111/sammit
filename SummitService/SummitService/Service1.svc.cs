@@ -142,6 +142,29 @@ namespace SummitService
                 connection.Close();
             }
         }
+        public void AddCountry(Country country)
+        {
+            string sqlExpression = "AddCountry";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter CountryNameParam = new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    Value = country.Name
+                };
+                command.Parameters.Add(CountryNameParam);
+
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
     }
 }
 
@@ -157,3 +180,10 @@ namespace SummitService
         public string error_message;
         public int id_user;
     }
+
+    public class Country
+    {
+        public string Name;
+    }
+
+

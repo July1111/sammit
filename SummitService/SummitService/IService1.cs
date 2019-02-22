@@ -17,5 +17,7 @@ namespace SummitService
         [OperationContract]
         void AddSummit(Summit summit);
 
+        [OperationContract]
+        void AddCountry(Country country);
     }
 }
