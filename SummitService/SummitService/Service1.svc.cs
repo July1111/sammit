@@ -222,11 +222,50 @@ namespace SummitService
                 connection.Close();
             }
         }
+
+        public void AddVoice(Voice voice)
+        {
+            string sqlExpression = "AddVoice";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter user_idParam = new SqlParameter
+                {
+                    ParameterName = "@User_ID",
+                    Value = voice.user_id
+                };
+                command.Parameters.Add(user_idParam);
+
+
+                SqlParameter variant_idParam = new SqlParameter
+                {
+                    ParameterName = "@Variant_ID",
+                    Value = voice.variant_id
+                };
+                command.Parameters.Add(variant_idParam);
+
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
     }
 
 }
 
-    public class Variant
+
+
+public class Voice
+    {
+        public int user_id;
+        public int variant_id;
+    }
+
+public class Variant
     {
         public DateTime StartDate;
         public DateTime FinishDate;
@@ -241,14 +280,14 @@ public class Summit
         public DateTime Date;
     }
 
-    public class Auth
+public class Auth
     {
         public bool error;
         public string error_message;
         public int id_user;
     }
 
-    public class Country
+public class Country
     {
         public string Name;
     }

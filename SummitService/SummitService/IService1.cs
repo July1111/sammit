@@ -22,5 +22,8 @@ namespace SummitService
 
         [OperationContract]
         void AddVariant(Variant variant);
+
+        [OperationContract]
+        void AddVoice(Voice voice);
     }
 }
