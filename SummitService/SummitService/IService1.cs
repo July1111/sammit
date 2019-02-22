@@ -25,5 +25,10 @@ namespace SummitService
 
         [OperationContract]
         void AddVoice(Voice voice);
+
+        [OperationContract]
+        void DeleteAllVoices();
+
+
     }
 }
