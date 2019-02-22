@@ -254,6 +254,7 @@ namespace SummitService
                 connection.Close();
             }
         }
+
         public List<Voice> Summarizing(int id)
         {
             string sqlExpression = "Summarizing";
@@ -297,6 +298,7 @@ namespace SummitService
 
             }
         }
+
         public List<Country> SelectCountry()
         {
             string sqlExpression = "SelectCountry";
@@ -330,22 +332,22 @@ namespace SummitService
                 }
 
             }
-            public void DeleteAllVoices()
-            {
-                string sqlExpression = "DeleteAllVoices";
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
-                    {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
-                    var result = command.ExecuteScalar();
-                    connection.Close();
-                }
-            }
         }
 
+        public void DeleteAllVoices()
+        {
+            string sqlExpression = "DeleteAllVoices";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
 }
 
 
