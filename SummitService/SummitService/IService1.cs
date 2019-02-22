@@ -25,5 +25,12 @@ namespace SummitService
 
         [OperationContract]
         void AddVoice(Voice voice);
+
+        [OperationContract]
+        List<Voice> Summarizing(int id);
+
+        [OperationContract]
+        List<Country> SelectCountry();
+
     }
 }

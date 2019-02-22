@@ -11,7 +11,8 @@ namespace SummitService
 {
     public class Service1 : IService1
     {
-        readonly string connectionString = @"Data Source=Юрий-ПК\SQLEXPRESS;Initial Catalog=SummitDB;Integrated Security=True";
+        //readonly string connectionString = @"Data Source=Юрий-ПК\SQLEXPRESS;Initial Catalog=SummitDB;Integrated Security=True";
+        readonly string connectionString = @"Data Source=737B;Initial Catalog=SummitDB;Integrated Security=True";
 
         public Auth Authorisation(string Login, string Password)
         {
@@ -253,17 +254,95 @@ namespace SummitService
                 connection.Close();
             }
         }
-    }
 
+        public List<Voice> Summarizing(int id)
+        {
+            string sqlExpression = "Summarizing";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter Param = new SqlParameter
+                {
+                    ParameterName = "@Summin_ID",
+                    Value = id
+                };
+                command.Parameters.Add(Param);
+
+                var reader = command.ExecuteReader();
+
+                List<Voice> summarizing = new List<Voice>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Voice cli = new Voice
+                        {
+
+                            variant_id = reader.GetInt32(0),
+                            sum = reader.GetInt32(1)
+
+                        };
+                        summarizing.Add(cli);
+                    }
+                    return summarizing;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
+        public List<Country> SelectCountry()
+        {
+            string sqlExpression = "SelectCountry";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                var reader = command.ExecuteReader();
+
+                List<Country> summarizing = new List<Country>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Country cli = new Country
+                        {
+                            Country_ID = reader.GetInt32(0),
+                            Name = reader.GetString(1)
+                        };
+                        summarizing.Add(cli);
+                    }
+                    return summarizing;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+    }
 }
 
 
-
 public class Voice
-    {
-        public int user_id;
-        public int variant_id;
-    }
+{
+    public int user_id;
+    public int variant_id;
+    public int sum;
+}
 
 public class Variant
     {
@@ -288,9 +367,11 @@ public class Auth
     }
 
 public class Country
-    {
-        public string Name;
-    }
+{
+    public int Country_ID;
+    public string Name;
+}
+
 
 
 
