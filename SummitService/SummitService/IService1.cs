@@ -29,6 +29,10 @@ namespace SummitService
         [OperationContract]
         void DeleteAllVoices();
 
+        [OperationContract]
+        List<Voice> Summarizing(int id);
 
+        [OperationContract]
+        List<Country> SelectCountry();
     }
 }
