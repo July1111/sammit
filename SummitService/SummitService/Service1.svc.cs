@@ -109,10 +109,47 @@ namespace SummitService
                 }
 
             }
-        } 
+        }
 
+        public void AddSummit(Summit summit)
+        {
+            string sqlExpression = "AddSummit";
+            string date = summit.Date.ToString("d");
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                SqlParameter NameParam = new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    Value = summit.Name
+                };
+                command.Parameters.Add(NameParam);
+
+                SqlParameter DateParam = new SqlParameter
+                {
+                    ParameterName = "@Date",
+                    Value = summit.Date
+                };
+                command.Parameters.Add(DateParam);
+
+                var result = command.ExecuteScalar();
+                connection.Close();
+            }
+        }
     }
+}
 
+    public class Summit
+    {
+        public string Name;
+        public DateTime Date;
+    }
 
     public class Auth
     {
@@ -120,4 +157,3 @@ namespace SummitService
         public string error_message;
         public int id_user;
     }
-}

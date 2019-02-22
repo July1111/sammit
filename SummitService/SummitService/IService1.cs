@@ -14,6 +14,8 @@ namespace SummitService
         [OperationContract]
         Auth Authorisation(string Login, string Password);
 
+        [OperationContract]
+        void AddSummit(Summit summit);
 
     }
 }
