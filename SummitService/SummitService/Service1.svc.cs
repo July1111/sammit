@@ -11,7 +11,7 @@ namespace SummitService
 {
     public class Service1 : IService1
     {
-        readonly string connectionString = @"Data Source=Юрий-ПК\SQLEXPRESS;Initial Catalog=SummitDB;Integrated Security=True";
+        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
 
         public Auth Authorisation(string Login, string Password)
         {
@@ -347,6 +347,7 @@ namespace SummitService
                 connection.Close();
             }
         }
+    }
 }
 
 

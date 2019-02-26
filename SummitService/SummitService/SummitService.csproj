@@ -61,11 +61,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
     <Content Include="App_Data\SummitDB.mdf" />
     <Content Include="App_Data\SummitDB_log.ldf">
       <DependentUpon>SummitDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
