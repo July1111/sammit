@@ -151,9 +151,9 @@ namespace SummitService
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command1 = new SqlCommand("Select * from Country where Name = @name", connection);
+                SqlCommand command1 = new SqlCommand("Select count(*) from Country where Name = @name", connection);
                 command1.Parameters.AddWithValue("@name", name);
-                int count_country = command1.ExecuteNonQuery();
+                int count_country = (int)command1.ExecuteScalar();
 
                 if (count_country == 0)
                 {
@@ -165,7 +165,7 @@ namespace SummitService
                     SqlParameter CountryNameParamet = new SqlParameter
                     {
                         ParameterName = "@Name",
-                        Value = country.Name
+                        Value = name
                     };
                     command.Parameters.Add(CountryNameParamet);
 
@@ -175,7 +175,7 @@ namespace SummitService
                 }
                 else {
                     country.error = true;
-                    country.error_message = "Такая страна уже существует";
+                    country.error_message = "такая страна уже сущесвтует!";
                     return country;
 
                 }
