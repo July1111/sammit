@@ -18,7 +18,7 @@ namespace SummitService
         void AddSummit(Summit summit);
 
         [OperationContract]
-        void AddCountry(Country country);
+        Country AddCountry(string country);
 
         [OperationContract]
         void AddVariant(Variant variant);

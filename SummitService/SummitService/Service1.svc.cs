@@ -11,7 +11,7 @@ namespace SummitService
 {
     public class Service1 : IService1
     {
-        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
+        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
 
         public Auth Authorisation(string Login, string Password)
         {
@@ -143,27 +143,43 @@ namespace SummitService
             }
         }
 
-        public void AddCountry(Country country)
+        public Country AddCountry(string name)
         {
             string sqlExpression = "AddCountry";
+            Country country = new Country();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
+                SqlCommand command1 = new SqlCommand("Select * from Country where Name = @name", connection);
+                command1.Parameters.AddWithValue("@name", name);
+                int count_country = command1.ExecuteNonQuery();
 
-                SqlParameter CountryNameParamet = new SqlParameter
+                if (count_country == 0)
                 {
-                    ParameterName = "@Name",
-                    Value = country.Name
-                };
-                command.Parameters.Add(CountryNameParamet);
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    {
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
 
-                var result = command.ExecuteScalar();
-                connection.Close();
+                    SqlParameter CountryNameParamet = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        Value = country.Name
+                    };
+                    command.Parameters.Add(CountryNameParamet);
+
+                    var result = command.ExecuteScalar();
+                    country.error = false;
+                    return country;
+                }
+                else {
+                    country.error = true;
+                    country.error_message = "Такая страна уже существует";
+                    return country;
+
+                }
+           
             }
         }
 
@@ -281,7 +297,7 @@ namespace SummitService
                     {
                         Voice cli = new Voice
                         {
-
+                    
                             variant_id = reader.GetInt32(0),
                             sum = reader.GetInt32(1)
 
@@ -383,6 +399,8 @@ public class Auth
 
 public class Country
 {
+    public bool error;
+    public string error_message;
     public int Country_ID;
     public string Name;
 }
