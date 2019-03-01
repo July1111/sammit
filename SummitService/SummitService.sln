@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummitService", "SummitService\SummitService.csproj", "{C42F9D02-DF73-4E1D-8432-99B47636245C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteAllVoicesTest", "DeleteAllVoicesTest\DeleteAllVoicesTest.csproj", "{96996E4E-5BD3-4971-A6BA-B586A9965C06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummitService.Tests", "SummitService.Tests\SummitService.Tests.csproj", "{C2105AEA-FB13-4693-B7DD-85FE47603B55}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C42F9D02-DF73-4E1D-8432-99B47636245C} = {C42F9D02-DF73-4E1D-8432-99B47636245C}
 	EndProjectSection
@@ -20,10 +20,10 @@ Global
 		{C42F9D02-DF73-4E1D-8432-99B47636245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C42F9D02-DF73-4E1D-8432-99B47636245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C42F9D02-DF73-4E1D-8432-99B47636245C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96996E4E-5BD3-4971-A6BA-B586A9965C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96996E4E-5BD3-4971-A6BA-B586A9965C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96996E4E-5BD3-4971-A6BA-B586A9965C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96996E4E-5BD3-4971-A6BA-B586A9965C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2105AEA-FB13-4693-B7DD-85FE47603B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2105AEA-FB13-4693-B7DD-85FE47603B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2105AEA-FB13-4693-B7DD-85FE47603B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2105AEA-FB13-4693-B7DD-85FE47603B55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
