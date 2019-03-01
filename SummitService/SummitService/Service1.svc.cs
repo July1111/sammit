@@ -11,8 +11,8 @@ namespace SummitService
 {
     public class Service1 : IService1
     {
-        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
-
+        //readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
+        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
         public Auth Authorisation(string Login, string Password)
         {
             Auth auth = new Auth();
@@ -111,35 +111,54 @@ namespace SummitService
             }
         }
 
-        public void AddSummit(Summit summit)
+        public Summit AddSummit(string name, DateTime date)
         {
             string sqlExpression = "AddSummit";
-            string date = summit.Date.ToString("d");
+            Summit summit = new Summit();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
 
-                SqlParameter NameParam = new SqlParameter
-                {
-                    ParameterName = "@Name",
-                    Value = summit.Name
-                };
-                command.Parameters.Add(NameParam);
+                SqlCommand command1 = new SqlCommand("Select count(*) from Summit where Name = @name", connection);
+                command1.Parameters.AddWithValue("@name", name);
+                int count_summit = (int)command1.ExecuteScalar();
 
-                SqlParameter DateParam = new SqlParameter
+                if (count_summit == 0)
                 {
-                    ParameterName = "@Date",
-                    Value = summit.Date
-                };
-                command.Parameters.Add(DateParam);
 
-                var result = command.ExecuteScalar();
-                connection.Close();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    {
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
+
+                    SqlParameter NameParam = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        Value = name
+                    };
+                    command.Parameters.Add(NameParam);
+
+                    SqlParameter DateParam = new SqlParameter
+                    {
+                        ParameterName = "@Date",
+                        Value = date
+                    };
+                    command.Parameters.Add(DateParam);
+
+                    var result = command.ExecuteScalar();
+                    summit.error = false;
+                    return summit;
+                }
+                
+
+                else {
+                        summit.error = true;
+                        summit.error_message = "Такой саммит уже сущесвтует!";
+                    return summit;
+
+                }
+                
             }
         }
 
@@ -186,8 +205,6 @@ namespace SummitService
         public void AddVariant(Variant variant)
         {
             string sqlExpression = "AddVariant";
-            string dateS = variant.StartDate.ToString("ds");
-            string dateF = variant.FinishDate.ToString("df");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -239,34 +256,51 @@ namespace SummitService
             }
         }
 
-        public void AddVoice(Voice voice)
+        public Voice AddVoice(int user_id, int variant_id)
         {
             string sqlExpression = "AddVoice";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
+
+                Voice voice = new Voice();
+
+                SqlCommand command1 = new SqlCommand("Select count(*) from Voice where User_ID = @user_id", connection);
+                command1.Parameters.AddWithValue("@user_id", user_id);
+                int count_voicesFromOneUser = (int)command1.ExecuteScalar();
+
+                if (count_voicesFromOneUser == 0)
                 {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    {
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
 
-                SqlParameter user_idParam = new SqlParameter
+                    SqlParameter user_idParam = new SqlParameter
+                    {
+                        ParameterName = "@User_ID",
+                        Value = user_id
+                    };
+                    command.Parameters.Add(user_idParam);
+
+
+                    SqlParameter variant_idParam = new SqlParameter
+                    {
+                        ParameterName = "@Variant_ID",
+                        Value = variant_id
+                    };
+                    command.Parameters.Add(variant_idParam);
+
+                    var result = command.ExecuteScalar();
+                    voice.error = false;
+                    return voice;
+                }
+                else
                 {
-                    ParameterName = "@User_ID",
-                    Value = voice.user_id
-                };
-                command.Parameters.Add(user_idParam);
-
-
-                SqlParameter variant_idParam = new SqlParameter
-                {
-                    ParameterName = "@Variant_ID",
-                    Value = voice.variant_id
-                };
-                command.Parameters.Add(variant_idParam);
-
-                var result = command.ExecuteScalar();
-                connection.Close();
+                    voice.error = true;
+                    voice.error_message = "Голос от данного пользователя уже принят!";
+                    return voice;
+                }
             }
         }
 
@@ -317,6 +351,8 @@ namespace SummitService
         public List<Country> SelectCountry()
         {
             string sqlExpression = "SelectCountry";
+
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -373,6 +409,8 @@ public class Voice
     public int user_id;
     public int variant_id;
     public int sum;
+    public bool error;
+    public string error_message;
 }
 
 public class Variant
@@ -388,7 +426,9 @@ public class Summit
     {
         public string Name;
         public DateTime Date;
-    }
+        public bool error;
+        public string error_message;
+}
 
 public class Auth
     {

@@ -15,7 +15,7 @@ namespace SummitService
         Auth Authorisation(string Login, string Password);
 
         [OperationContract]
-        void AddSummit(Summit summit);
+        Summit AddSummit(string summit, DateTime date);
 
         [OperationContract]
         Country AddCountry(string country);
@@ -24,7 +24,7 @@ namespace SummitService
         void AddVariant(Variant variant);
 
         [OperationContract]
-        void AddVoice(Voice voice);
+        Voice AddVoice(int user_id, int variant_id);
 
         [OperationContract]
         void DeleteAllVoices();
