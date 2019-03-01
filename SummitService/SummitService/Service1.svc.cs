@@ -172,12 +172,12 @@ namespace SummitService
                     var result = command.ExecuteScalar();
                     country.error = false;
                     return country;
+
                 }
                 else {
                     country.error = true;
                     country.error_message = "такая страна уже сущесвтует!";
                     return country;
-
                 }
            
             }
