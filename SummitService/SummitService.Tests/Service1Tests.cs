@@ -72,22 +72,5 @@ namespace SummitService.Tests
             //assert
             Assert.AreEqual(expected, result.error);
         }
-
-       /* [TestMethod]
-        public void Summarizing_1and1_expected_2()
-        {
-            //arrange
-            int user_id = 1;
-            int variant_id = 1;
-            bool expected = true;
-
-            //act
-            Service1Client client = new Service1Client("BasicHttpBinding_IService1");
-            var result = client.AddVoice(user_id, variant_id);
-
-            //assert
-            Assert.AreEqual(expected, result.error);
-        }*/
-
     }
 }
