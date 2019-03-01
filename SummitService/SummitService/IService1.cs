@@ -21,7 +21,7 @@ namespace SummitService
         Country AddCountry(string country);
 
         [OperationContract]
-        void AddVariant(Variant variant);
+        Variant AddVariant(DateTime StartDate, DateTime FinishDate, int country_id, int user_id, int summit_id);
 
         [OperationContract]
         Voice AddVoice(int user_id, int variant_id);
