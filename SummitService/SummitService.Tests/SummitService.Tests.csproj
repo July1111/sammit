@@ -78,6 +78,12 @@
     <None Include="Connected Services\ServiceReference1\SummitService.Tests.ServiceReference1.Country.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference1\SummitService.Tests.ServiceReference1.Summit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\SummitService.Tests.ServiceReference1.Variant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference1\SummitService.Tests.ServiceReference1.Voice.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

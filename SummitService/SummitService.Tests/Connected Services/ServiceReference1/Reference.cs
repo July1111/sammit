@@ -105,6 +105,12 @@ namespace SummitService.Tests.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool errorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string error_messageField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -137,6 +143,32 @@ namespace SummitService.Tests.ServiceReference1 {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool error {
+            get {
+                return this.errorField;
+            }
+            set {
+                if ((this.errorField.Equals(value) != true)) {
+                    this.errorField = value;
+                    this.RaisePropertyChanged("error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string error_message {
+            get {
+                return this.error_messageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
+                    this.error_messageField = value;
+                    this.RaisePropertyChanged("error_message");
                 }
             }
         }
@@ -263,6 +295,12 @@ namespace SummitService.Tests.ServiceReference1 {
         private int country_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool errorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string error_messageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int summit_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -318,6 +356,32 @@ namespace SummitService.Tests.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool error {
+            get {
+                return this.errorField;
+            }
+            set {
+                if ((this.errorField.Equals(value) != true)) {
+                    this.errorField = value;
+                    this.RaisePropertyChanged("error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string error_message {
+            get {
+                return this.error_messageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
+                    this.error_messageField = value;
+                    this.RaisePropertyChanged("error_message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int summit_id {
             get {
                 return this.summit_idField;
@@ -363,6 +427,12 @@ namespace SummitService.Tests.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool errorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string error_messageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int sumField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -378,6 +448,32 @@ namespace SummitService.Tests.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool error {
+            get {
+                return this.errorField;
+            }
+            set {
+                if ((this.errorField.Equals(value) != true)) {
+                    this.errorField = value;
+                    this.RaisePropertyChanged("error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string error_message {
+            get {
+                return this.error_messageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
+                    this.error_messageField = value;
+                    this.RaisePropertyChanged("error_message");
+                }
             }
         }
         
@@ -441,10 +537,10 @@ namespace SummitService.Tests.ServiceReference1 {
         System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Auth> AuthorisationAsync(string Login, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddSummit", ReplyAction="http://tempuri.org/IService1/AddSummitResponse")]
-        void AddSummit(SummitService.Tests.ServiceReference1.Summit summit);
+        SummitService.Tests.ServiceReference1.Summit AddSummit(string summit, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddSummit", ReplyAction="http://tempuri.org/IService1/AddSummitResponse")]
-        System.Threading.Tasks.Task AddSummitAsync(SummitService.Tests.ServiceReference1.Summit summit);
+        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Summit> AddSummitAsync(string summit, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddCountry", ReplyAction="http://tempuri.org/IService1/AddCountryResponse")]
         SummitService.Tests.ServiceReference1.Country AddCountry(string country);
@@ -453,16 +549,16 @@ namespace SummitService.Tests.ServiceReference1 {
         System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Country> AddCountryAsync(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVariant", ReplyAction="http://tempuri.org/IService1/AddVariantResponse")]
-        void AddVariant(SummitService.Tests.ServiceReference1.Variant variant);
+        SummitService.Tests.ServiceReference1.Variant AddVariant(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVariant", ReplyAction="http://tempuri.org/IService1/AddVariantResponse")]
-        System.Threading.Tasks.Task AddVariantAsync(SummitService.Tests.ServiceReference1.Variant variant);
+        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Variant> AddVariantAsync(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVoice", ReplyAction="http://tempuri.org/IService1/AddVoiceResponse")]
-        void AddVoice(SummitService.Tests.ServiceReference1.Voice voice);
+        SummitService.Tests.ServiceReference1.Voice AddVoice(int user_id, int variant_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVoice", ReplyAction="http://tempuri.org/IService1/AddVoiceResponse")]
-        System.Threading.Tasks.Task AddVoiceAsync(SummitService.Tests.ServiceReference1.Voice voice);
+        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice> AddVoiceAsync(int user_id, int variant_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAllVoices", ReplyAction="http://tempuri.org/IService1/DeleteAllVoicesResponse")]
         void DeleteAllVoices();
@@ -518,12 +614,12 @@ namespace SummitService.Tests.ServiceReference1 {
             return base.Channel.AuthorisationAsync(Login, Password);
         }
         
-        public void AddSummit(SummitService.Tests.ServiceReference1.Summit summit) {
-            base.Channel.AddSummit(summit);
+        public SummitService.Tests.ServiceReference1.Summit AddSummit(string summit, System.DateTime date) {
+            return base.Channel.AddSummit(summit, date);
         }
         
-        public System.Threading.Tasks.Task AddSummitAsync(SummitService.Tests.ServiceReference1.Summit summit) {
-            return base.Channel.AddSummitAsync(summit);
+        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Summit> AddSummitAsync(string summit, System.DateTime date) {
+            return base.Channel.AddSummitAsync(summit, date);
         }
         
         public SummitService.Tests.ServiceReference1.Country AddCountry(string country) {
@@ -534,20 +630,20 @@ namespace SummitService.Tests.ServiceReference1 {
             return base.Channel.AddCountryAsync(country);
         }
         
-        public void AddVariant(SummitService.Tests.ServiceReference1.Variant variant) {
-            base.Channel.AddVariant(variant);
+        public SummitService.Tests.ServiceReference1.Variant AddVariant(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id) {
+            return base.Channel.AddVariant(StartDate, FinishDate, country_id, user_id, summit_id);
         }
         
-        public System.Threading.Tasks.Task AddVariantAsync(SummitService.Tests.ServiceReference1.Variant variant) {
-            return base.Channel.AddVariantAsync(variant);
+        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Variant> AddVariantAsync(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id) {
+            return base.Channel.AddVariantAsync(StartDate, FinishDate, country_id, user_id, summit_id);
         }
         
-        public void AddVoice(SummitService.Tests.ServiceReference1.Voice voice) {
-            base.Channel.AddVoice(voice);
+        public SummitService.Tests.ServiceReference1.Voice AddVoice(int user_id, int variant_id) {
+            return base.Channel.AddVoice(user_id, variant_id);
         }
         
-        public System.Threading.Tasks.Task AddVoiceAsync(SummitService.Tests.ServiceReference1.Voice voice) {
-            return base.Channel.AddVoiceAsync(voice);
+        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice> AddVoiceAsync(int user_id, int variant_id) {
+            return base.Channel.AddVoiceAsync(user_id, variant_id);
         }
         
         public void DeleteAllVoices() {
