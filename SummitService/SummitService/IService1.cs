@@ -34,5 +34,8 @@ namespace SummitService
 
         [OperationContract]
         List<Country> SelectCountry();
+
+        [OperationContract]
+        List<Summit> SelectSummit();
     }
 }

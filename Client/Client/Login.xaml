@@ -23,10 +23,10 @@
             <ColumnDefinition Width="1.4*" ></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button x:Name="button" Content="Войти" Grid.Column="1" HorizontalAlignment="Center" Margin="35.2,199.6,40,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Height="35" Grid.RowSpan="2" FontFamily="Century Gothic" Background="#FFEAE3E3" FontSize="14" Click="button_Click"/>
-        <Label x:Name="label" Content="Логин" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" Margin="57.2,8.6,63,0" VerticalAlignment="Top" RenderTransformOrigin="0.073,0.523" Width="55" Grid.RowSpan="1" FontFamily="Century Gothic" Foreground="#FFAEA89E" FontSize="14"/>
-        <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="25.2,40.6,30,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="1"/>
-        <Label x:Name="label_Copy" Content="Пароль" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" Margin="53.2,77.6,54,0" VerticalAlignment="Top" RenderTransformOrigin="0.073,0.523" Width="68" Grid.RowSpan="1" FontFamily="Century Gothic" Foreground="#FFA9A6A1" FontSize="14"/>
-        <TextBox x:Name="textBox_Copy" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="43,110.4,49,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="1"/>
+        <Button x:Name="butEnter" Content="Войти" Grid.Column="1" HorizontalAlignment="Center" Margin="35.2,199.6,40,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Height="35" Grid.RowSpan="2" FontFamily="Century Gothic" Background="#FFEAE3E3" FontSize="14" Click="butEnter_Click"/>
+        <Label x:Name="labelLogin" Content="Логин" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" Margin="57.2,8.6,63,0" VerticalAlignment="Top" RenderTransformOrigin="0.073,0.523" Width="55" Grid.RowSpan="1" FontFamily="Century Gothic" Foreground="#FFAEA89E" FontSize="14"/>
+        <TextBox x:Name="textBoxLogin" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="25.2,40.6,30,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="1"/>
+        <Label x:Name="label_Password" Content="Пароль" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" Margin="53.2,77.6,54,0" VerticalAlignment="Top" RenderTransformOrigin="0.073,0.523" Width="68" Grid.RowSpan="1" FontFamily="Century Gothic" Foreground="#FFA9A6A1" FontSize="14"/>
+        <PasswordBox x:Name="Password" Grid.Column="1" HorizontalAlignment="Left" Margin="82,109,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="23"/>
     </Grid>
 </Page>

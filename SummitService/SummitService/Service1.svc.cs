@@ -16,7 +16,6 @@ namespace SummitService
         public Auth Authorisation(string Login, string Password)
         {
             Auth auth = new Auth();
-
             if (FindByLoginUsers(Login, Password))
             {
                 string sqlExpression = "Authorisation";
@@ -284,8 +283,9 @@ namespace SummitService
 
                 Voice voice = new Voice();
 
-                SqlCommand command1 = new SqlCommand("Select count(*) from Voice where User_ID = @user_id", connection);
+                SqlCommand command1 = new SqlCommand("Select count(*) from Variant Where User_ID = @user_id and ID_Variant=@variant_id", connection);
                 command1.Parameters.AddWithValue("@user_id", user_id);
+                command1.Parameters.AddWithValue("@variant_id", variant_id);
                 int count_voicesFromOneUser = (int)command1.ExecuteScalar();
 
                 if (count_voicesFromOneUser == 0)
@@ -317,7 +317,7 @@ namespace SummitService
                 else
                 {
                     voice.error = true;
-                    voice.error_message = "Голос от данного пользователя уже принят!";
+                    voice.error_message = "Пользователь не может проголосовать за свой вариант!";
                     return voice;
                 }
             }
@@ -418,6 +418,43 @@ namespace SummitService
                 connection.Close();
             }
         }
+
+        public List<Summit> SelectSummit()
+        {
+            string sqlExpression = "SelectSummit";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                var reader = command.ExecuteReader();
+
+                List<Summit> summ = new List<Summit>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Summit summit = new Summit
+                        {
+                            Summit_ID = reader.GetInt32(0),
+                            Name = reader.GetString(1)
+                        };
+                        summ.Add(summit);
+                    }
+                    return summ;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
     }
 }
 
@@ -445,11 +482,12 @@ public class Variant
 
 public class Summit
     {
+        public int Summit_ID;
         public string Name;
         public DateTime Date;
         public bool error;
         public string error_message;
-}
+    }
 
 public class Auth
     {

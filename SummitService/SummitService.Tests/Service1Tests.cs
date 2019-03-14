@@ -7,13 +7,15 @@ namespace SummitService.Tests
     [TestClass]
     public class Service1Tests
     {
+        
         [TestMethod]
-        public void AddCountry_Russia_truereturned()
+        public void AddCountry_USA_truereturned()
         {
             //arrange
-            string country = "Russia";
+            string country = "USA";
+           
             bool expected = true;
-            
+
             //act
             Service1Client client = new Service1Client("BasicHttpBinding_IService1");
             var result = client.AddCountry(country);
@@ -26,7 +28,7 @@ namespace SummitService.Tests
         public void AddSummit_Big7_truereturned()
         {
             //arrange
-            string summit = "Big7";
+            string summit = "Big10";
             DateTime date = DateTime.Today;
             bool expected = true;
 
@@ -58,7 +60,7 @@ namespace SummitService.Tests
         }
 
         [TestMethod]
-        public void AddVoice_1_1_truereturned()
+        public void AddVoice_1_1_true_returned()
         {
             //arrange
             int user_id = 1;

@@ -20,15 +20,33 @@ namespace Client
     /// </summary>
     public partial class Login : Page
     {
+        public static bool flag;
+        public static int UserID;
+
         public Login()
         {
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void butEnter_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            if (Service.Authorisation(Convert.ToString(textBoxLogin.Text), Convert.ToString(Password.Password)).id_user == 8)
+            {
+                UserID = Service.Authorisation(Convert.ToString(textBoxLogin.Text), Convert.ToString(Password.Password)).id_user;
+                NavigationService.Navigate(new Uri("/MainWindow.xaml", UriKind.Relative));
+            }
 
+            else if (Service.Authorisation(Convert.ToString(textBoxLogin.Text), Convert.ToString(Password.Password)).id_user != 8 && Service.Authorisation(Convert.ToString(textBoxLogin.Text), Convert.ToString(Password.Password)).id_user != 0)
+            {
+                UserID = Service.Authorisation(Convert.ToString(textBoxLogin.Text), Convert.ToString(Password.Password)).id_user;
+                NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
+            }
+
+            else
+            {
+                MessageBox.Show("Ошибка в паре логин/пароль!");
+            }
         }
     }
 }

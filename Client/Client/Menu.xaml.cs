@@ -23,12 +23,26 @@ namespace Client
         public Menu()
         {
             InitializeComponent();
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            for (int i = 0; i < Service.SelectSummit().Length; i++)
+            {
+                //comboBoxSummit.Items.Add(Service.SelectSummit()[i].Summit_ID);
+                comboBoxSummit.Items.Add(Service.SelectSummit()[i].Name);
+            }
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        private void butMyVariant_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
+        }
 
+        private void ComboBoxCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*if (comboBoxSummit.Text != "")
+            {
+                ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+
+            }*/
         }
     }
 }
