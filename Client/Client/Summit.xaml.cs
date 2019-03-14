@@ -25,14 +25,14 @@ namespace Client
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void butAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        private void butCancel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
         }
     }
 }

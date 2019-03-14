@@ -23,17 +23,16 @@
             <ColumnDefinition Width="7*" ></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Center" Margin="28.4,60,60.6,0" Grid.Row="1" VerticalAlignment="Top" Width="343" Height="23"/>
-        <ComboBox x:Name="comboBox_Copy" Grid.Column="1" HorizontalAlignment="Center" Margin="29.4,126,59.6,0" Grid.Row="1" VerticalAlignment="Top" Width="343" Height="23"/>
+        <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Center" Margin="28.4,60,60.6,0" Grid.Row="1" VerticalAlignment="Top" Width="343" Height="23" SelectionChanged="ComboBox_SelectionChanged"/>
+        <ComboBox x:Name="comboBox_Copy" Grid.Column="1" HorizontalAlignment="Center" Margin="29.4,126,59.6,0" Grid.Row="1" VerticalAlignment="Top" Width="343" Height="23" SelectionChanged="ComboBox_Copy_SelectionChanged"/>
         <Button x:Name="button" Content="Добавить" Grid.Column="1" HorizontalAlignment="Center" Margin="222.4,10.2,126.6,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="28" Click="button_Click" FontFamily="Century Gothic"/>
         <Button x:Name="button1" Content="Отмена" Grid.Column="1" HorizontalAlignment="Center" Margin="320.4,10.2,28.6,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="28" Click="button1_Click_1" FontFamily="Century Gothic"/>
         <Label x:Name="label" Content="Саммит" Grid.Column="1" HorizontalAlignment="Center" Margin="27.4,31,318.6,0" VerticalAlignment="Top" Foreground="#FFE7E7E7" FontSize="14" Grid.Row="1" FontFamily="Century Gothic" Width="86" Height="27"/>
         <Label x:Name="label1" Content="Страна" Grid.Column="1" HorizontalAlignment="Center" Margin="30.4,97,327.6,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE0E0E0" FontSize="14" FontFamily="Century Gothic" Width="74" Height="27"/>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="29.4,192,259.6,0" Grid.Row="1" VerticalAlignment="Top" Width="143" FontFamily="Century Gothic" Height="24"/>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Center" Margin="231.4,192,59.6,0" Grid.Row="1" VerticalAlignment="Top" Width="141" FontFamily="Century Gothic" Height="24"/>
+        <DatePicker x:Name="StartD" Grid.Column="1" HorizontalAlignment="Center" Margin="29.4,192,259.6,0" Grid.Row="1" VerticalAlignment="Top" Width="143" FontFamily="Century Gothic" Height="24"/>
+        <DatePicker x:Name="FinishD" Grid.Column="1" HorizontalAlignment="Center" Margin="231.4,192,59.6,0" Grid.Row="1" VerticalAlignment="Top" Width="141" FontFamily="Century Gothic" Height="24"/>
         <Label x:Name="label1_Copy" Content="Дата начала" Grid.Column="1" HorizontalAlignment="Center" Margin="31.4,167,308.6,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE0E0E0" FontFamily="Century Gothic" Width="92" Height="24"/>
         <Label x:Name="label1_Copy1" Content="Дата окончания" Grid.Column="1" HorizontalAlignment="Center" Margin="227.4,167,98.6,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE0E0E0" FontFamily="Century Gothic" Height="24" Width="106"/>
-        <Button x:Name="button2" Content="..." Grid.Column="1" HorizontalAlignment="Center" Margin="376.4,60,28.6,0" Grid.Row="1" VerticalAlignment="Top" Width="27" Height="23" Click="button2_Click"/>
         <Button x:Name="button2_Copy" Content="..." Grid.Column="1" HorizontalAlignment="Center" Margin="376.4,127,28.6,0" Grid.Row="1" VerticalAlignment="Top" Width="27" Height="23" RenderTransformOrigin="0.461,0.522" Click="button2_Copy_Click"/>
 
 

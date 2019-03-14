@@ -25,12 +25,17 @@ namespace Client
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void butAdd_Click(object sender, RoutedEventArgs e)
         {
+            ServiceReference1.Country Service1 = new ServiceReference1.Country();
+            Service1.Name = Convert.ToString(textBox.Text);
+
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            Service.AddCountry(Service1.Name);
             NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        private void ButCancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
         }

@@ -203,75 +203,75 @@ namespace SummitService
 
         public Variant AddVariant(DateTime StartDate, DateTime FinishDate, int country_id, int user_id, int summit_id)
         {
-            string sqlExpression = "AddVariant";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                Variant variant = new Variant();
-
-                SqlCommand command1 = new SqlCommand("Select count(*) from Variant where User_ID = @user_id AND Summit_ID = @summit_id AND Country_ID = @country_id", connection);
-                command1.Parameters.AddWithValue("@user_id", user_id);
-                command1.Parameters.AddWithValue("@summit_id", summit_id);
-                command1.Parameters.AddWithValue("@country_id", country_id);
-                int count_variantsFromOneUser = (int)command1.ExecuteScalar();
-
-                if (count_variantsFromOneUser == 0)
+                string sqlExpression = "AddVariant";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    connection.Open();
+                    Variant variant = new Variant();
 
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    SqlCommand command1 = new SqlCommand("Select count(*) from Variant where User_ID = @user_id AND Summit_ID = @summit_id AND Country_ID = @country_id", connection);
+                    command1.Parameters.AddWithValue("@user_id", user_id);
+                    command1.Parameters.AddWithValue("@summit_id", summit_id);
+                    command1.Parameters.AddWithValue("@country_id", country_id);
+                    int count_variantsFromOneUser = (int)command1.ExecuteScalar();
+
+                    if (count_variantsFromOneUser == 0)
                     {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
 
-                    SqlParameter DateStart = new SqlParameter
+                        SqlCommand command = new SqlCommand(sqlExpression, connection)
+                        {
+                            CommandType = System.Data.CommandType.StoredProcedure
+                        };
+
+                        SqlParameter DateStart = new SqlParameter
+                        {
+                            ParameterName = "@StartDate",
+                            Value = StartDate
+                        };
+                        command.Parameters.Add(DateStart);
+
+                        SqlParameter DateFinish = new SqlParameter
+                        {
+                            ParameterName = "@FinishDate",
+                            Value = FinishDate
+                        };
+                        command.Parameters.Add(DateFinish);
+
+
+                        SqlParameter country_idParam = new SqlParameter
+                        {
+                            ParameterName = "@Country_ID",
+                            Value = country_id
+                        };
+                        command.Parameters.Add(country_idParam);
+
+
+                        SqlParameter user_idParam = new SqlParameter
+                        {
+                            ParameterName = "@User_ID",
+                            Value = user_id
+                        };
+                        command.Parameters.Add(user_idParam);
+
+
+                        SqlParameter summit_idParam = new SqlParameter
+                        {
+                            ParameterName = "@Summit_ID",
+                            Value = summit_id
+                        };
+                        command.Parameters.Add(summit_idParam);
+
+                        var result = command.ExecuteScalar();
+                        variant.error = false;
+                        return variant;
+                    }
+                    else
                     {
-                        ParameterName = "@StartDate",
-                        Value = StartDate
-                    };
-                    command.Parameters.Add(DateStart);
-
-                    SqlParameter DateFinish = new SqlParameter
-                    {
-                        ParameterName = "@FinishDate",
-                        Value = FinishDate
-                    };
-                    command.Parameters.Add(DateFinish);
-
-
-                    SqlParameter country_idParam = new SqlParameter
-                    {
-                        ParameterName = "@Country_ID",
-                        Value = country_id
-                    };
-                    command.Parameters.Add(country_idParam);
-
-
-                    SqlParameter user_idParam = new SqlParameter
-                    {
-                        ParameterName = "@User_ID",
-                        Value = user_id
-                    };
-                    command.Parameters.Add(user_idParam);
-
-
-                    SqlParameter summit_idParam = new SqlParameter
-                    {
-                        ParameterName = "@Summit_ID",
-                        Value = summit_id
-                    };
-                    command.Parameters.Add(summit_idParam);
-
-                    var result = command.ExecuteScalar();
-                    variant.error = false;
-                    return variant;
+                        variant.error = true;
+                        variant.error_message = "Вариант с такими параметрами от данного пользователя уже был!";
+                        return variant;
+                    }
                 }
-                else
-                {
-                    variant.error = true;
-                    variant.error_message = "Вариант с такими параметрами от данного пользователя уже был!";
-                    return variant;
-                }
-            }
         }
 
         public Voice AddVoice(int user_id, int variant_id)

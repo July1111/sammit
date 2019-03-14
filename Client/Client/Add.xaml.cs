@@ -20,9 +20,20 @@ namespace Client
     /// </summary>
     public partial class Add : Page
     {
+        public int couID;
+        public int sumID;
         public Add()
         {
             InitializeComponent();
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            for (int i = 0; i < Service.SelectCountry().Length; i++)
+            {
+                comboBox_Copy.Items.Add(Service.SelectCountry()[i].Name);
+            }
+            for (int i = 0; i < Service.SelectSummit().Length; i++)
+            {
+                comboBox.Items.Add(Service.SelectSummit()[i].Name);
+            }
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)
@@ -32,7 +43,22 @@ namespace Client
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
+                ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+                if (comboBox.Text != "" && comboBox_Copy.Text != "" && StartD.Text!="" && FinishD.Text != "")
+                {
+                    ServiceReference1.Variant Service1 = new ServiceReference1.Variant();
+                    Service1.StartDate = Convert.ToDateTime(StartD.SelectedDate);
+                    Service1.FinishDate = Convert.ToDateTime(FinishD.SelectedDate);
+                    Service1.country_id = Convert.ToInt32(couID);
+                    Service1.summit_id = Convert.ToInt32(sumID);
+                    Service1.user_id = Convert.ToInt32(Login.UserID);
+                    Service.AddVariant(Service1.StartDate, Service1.FinishDate, Service1.country_id, Service1.user_id, Service1.summit_id);
+                    NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все значения формы!");
+                }
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -43,6 +69,30 @@ namespace Client
         private void button2_Copy_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Country.xaml", UriKind.Relative));
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            for (int i = 0; i < Service.SelectSummit().Length; i++)
+            {
+                if (Convert.ToString(comboBox.SelectedItem) == Service.SelectSummit()[i].Name)
+                {
+                    sumID = Service.SelectSummit()[i].Summit_ID;
+                }
+            }
+        }
+
+        private void ComboBox_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            for (int i = 0; i < Service.SelectCountry().Length; i++)
+            {
+                if (Convert.ToString(comboBox_Copy.SelectedItem) == Service.SelectCountry()[i].Name)
+                {
+                    couID = Service.SelectCountry()[i].Country_ID;
+                }
+            }
         }
     }
 }
