@@ -26,7 +26,9 @@ namespace Client
         public Menu()
         {
             InitializeComponent();
-            
+           
+
+
             comboBoxSummit.SelectedValuePath = "Value";
             comboBoxSummit.DisplayMemberPath = "Text";
 
@@ -43,18 +45,26 @@ namespace Client
 
         private void ComboBoxCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dataGridVariants.ItemsSource = Service.SelectVariant((int)comboBoxSummit.SelectedValue);
-            /*
-            foreach (var element in Service.SelectVariant((int)comboBoxSummit.SelectedValue)) {
-                dataGridVariants.Items.Add(element.StartDate);
-            }*/
-
-
-            /*if (comboBoxSummit.Text != "")
+            label_error.Content = "";
+            dataGridVariants.Items.Clear();
+            dataGridVariants.Items.Refresh();
+        
+            if (Service.SelectVariant((int)comboBoxSummit.SelectedValue) != null)
             {
-                ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+                foreach (var element in Service.SelectVariant((int)comboBoxSummit.SelectedValue))
+                {
+                    dataGridVariants.Items.Add(new {id = element.variant_id, startdate = element.StartDate.ToString("dd/MM/yyyy"), enddate = element.FinishDate.ToString("dd/MM/yyyy"), country = element.country, user = element.user });
+                }
+            }
+            else {
+                label_error.Content = "Вариантов нет";
+            }
+            dataGridVariants.Columns[0].Visibility = Visibility.Hidden;
+        }
 
-            }*/
+        private void ButAddVoice_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void ButOutput_Click(object sender, RoutedEventArgs e)

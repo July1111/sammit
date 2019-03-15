@@ -6,6 +6,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SummitService
 {
@@ -450,20 +452,25 @@ namespace SummitService
             }
         }
 
-        public List<Variant> SelectVariant(int summit_id)
+        public ObservableCollection<Variant> SelectVariant(int summit_id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand("Select * from Variant where Summit_ID = @summit_id", connection);
+                string sql = @"Select Variant.ID_Variant as 'id', Variant.StartDate as 'StartDate', Variant.FinishDate as 'FinishDate', Country.Name as 'Country', [User].FIO as 'User'  from Variant
+                                inner join Country on Country.ID_Country = Variant.Country_ID
+                                inner join [User] on [User].ID_User = Variant.User_ID
+                                where Summit_ID = @summit_id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@summit_id", summit_id);
                 
                 
 
                 var reader = command.ExecuteReader();
 
-                List<Variant> summ = new List<Variant>();
+                ObservableCollection<Variant> summ = new ObservableCollection<Variant>();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -473,8 +480,8 @@ namespace SummitService
                             variant_id = reader.GetInt32(0),
                             StartDate = reader.GetDateTime(1),
                             FinishDate = reader.GetDateTime(2),
-                            country_id = reader.GetInt32(3),
-                            user_id = reader.GetInt32(4)
+                            country = reader.GetString(3),
+                            user = reader.GetString(4)
                         };
                         summ.Add(variant);
                     }
@@ -506,6 +513,8 @@ public class Variant
     public int variant_id;
     public DateTime StartDate;
     public DateTime FinishDate;
+    public string country;
+    public string user;
     public int country_id;
     public int user_id;
     public int summit_id;

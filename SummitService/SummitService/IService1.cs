@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SummitService
 {
@@ -39,6 +41,6 @@ namespace SummitService
         List<Summit> SelectSummit();
 
         [OperationContract]
-        List<Variant> SelectVariant(int summit_id);
+        ObservableCollection<Variant> SelectVariant(int summit_id);
     }
 }

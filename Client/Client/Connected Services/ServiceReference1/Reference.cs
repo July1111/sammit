@@ -308,6 +308,9 @@ namespace Client.ServiceReference1 {
         private System.DateTime StartDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string countryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int country_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -318,6 +321,9 @@ namespace Client.ServiceReference1 {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int summit_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string userField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int user_idField;
@@ -357,6 +363,19 @@ namespace Client.ServiceReference1 {
                 if ((this.StartDateField.Equals(value) != true)) {
                     this.StartDateField = value;
                     this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string country {
+            get {
+                return this.countryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.countryField, value) != true)) {
+                    this.countryField = value;
+                    this.RaisePropertyChanged("country");
                 }
             }
         }
@@ -409,6 +428,19 @@ namespace Client.ServiceReference1 {
                 if ((this.summit_idField.Equals(value) != true)) {
                     this.summit_idField = value;
                     this.RaisePropertyChanged("summit_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string user {
+            get {
+                return this.userField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.userField, value) != true)) {
+                    this.userField = value;
+                    this.RaisePropertyChanged("user");
                 }
             }
         }
