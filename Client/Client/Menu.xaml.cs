@@ -36,8 +36,8 @@ namespace Client
             foreach (var element in Service.SelectSummit()) {
                 comboBoxSummit.Items.Add(new {Value = element.Summit_ID, Text = element.Name });
             }
-            
-            
+            dataGridVariants.Columns[0].Visibility = Visibility.Hidden;
+
         }
 
         private void butMyVariant_Click(object sender, RoutedEventArgs e)

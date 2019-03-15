@@ -41,9 +41,8 @@
                 <DataGridTextColumn Width="50" Binding="{Binding Path=id}" Header="ID" />
                 <DataGridTextColumn Width="100" Binding="{Binding Path=startdate}" Header="Дата начала" />
                 <DataGridTextColumn Width="110" Binding="{Binding Path=enddate}" Header="Дата окончания" />
-                <DataGridTextColumn Width="100" Binding="{Binding Path=country}" Header="Страна" />
-                <DataGridTextColumn Width="100" Binding="{Binding Path=user}" Header="Предложил" />
-                
+                <DataGridTextColumn Width="143" Binding="{Binding Path=country}" Header="Страна" />
+                <DataGridTextColumn Width="150" Binding="{Binding Path=user}" Header="Предложил" />
             </DataGrid.Columns>
 
         </DataGrid>
@@ -107,14 +106,10 @@
             x:Name="output"
             Grid.Row="2"
             Grid.Column="1"
-            Width="85"
-            Height="32"
-            Margin="488.6,18.4,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Margin="0,18,23.5,0"
             Content="Выход"
             FontFamily="Century Gothic"
-            FontSize="14" Click="Output_Click" />
+            FontSize="14" Click="Output_Click" HorizontalAlignment="Right" Width="85" Height="32" VerticalAlignment="Top" />
         <Label Name="label_error" FontFamily="Century Gothic"
             FontSize="14" Foreground="#FFE4E4E4" Grid.Column="1" HorizontalAlignment="Left" Margin="328,33.5,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
