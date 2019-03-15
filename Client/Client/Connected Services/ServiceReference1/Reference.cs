@@ -322,6 +322,9 @@ namespace Client.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int user_idField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int variant_idField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -419,6 +422,19 @@ namespace Client.ServiceReference1 {
                 if ((this.user_idField.Equals(value) != true)) {
                     this.user_idField = value;
                     this.RaisePropertyChanged("user_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int variant_id {
+            get {
+                return this.variant_idField;
+            }
+            set {
+                if ((this.variant_idField.Equals(value) != true)) {
+                    this.variant_idField = value;
+                    this.RaisePropertyChanged("variant_id");
                 }
             }
         }
@@ -599,6 +615,12 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectSummit", ReplyAction="http://tempuri.org/IService1/SelectSummitResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference1.Summit[]> SelectSummitAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectVariant", ReplyAction="http://tempuri.org/IService1/SelectVariantResponse")]
+        Client.ServiceReference1.Variant[] SelectVariant(int summit_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectVariant", ReplyAction="http://tempuri.org/IService1/SelectVariantResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference1.Variant[]> SelectVariantAsync(int summit_id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -698,6 +720,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<Client.ServiceReference1.Summit[]> SelectSummitAsync() {
             return base.Channel.SelectSummitAsync();
+        }
+        
+        public Client.ServiceReference1.Variant[] SelectVariant(int summit_id) {
+            return base.Channel.SelectVariant(summit_id);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference1.Variant[]> SelectVariantAsync(int summit_id) {
+            return base.Channel.SelectVariantAsync(summit_id);
         }
     }
 }

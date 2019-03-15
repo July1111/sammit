@@ -11,8 +11,8 @@ namespace SummitService
 {
     public class Service1 : IService1
     {
-        //readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
-        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
+        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
+        //readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
         public Auth Authorisation(string Login, string Password)
         {
             Auth auth = new Auth();
@@ -455,6 +455,44 @@ namespace SummitService
 
             }
         }
+
+        public List<Variant> SelectVariant(int summit_id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("Select * from Variant where Summit_ID = @summit_id", connection);
+                command.Parameters.AddWithValue("@summit_id", summit_id);
+                
+                
+
+                var reader = command.ExecuteReader();
+
+                List<Variant> summ = new List<Variant>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Variant variant = new Variant
+                        {
+                            variant_id = reader.GetInt32(0),
+                            StartDate = reader.GetDateTime(1),
+                            FinishDate = reader.GetDateTime(2),
+                            country_id = reader.GetInt32(3),
+                            user_id = reader.GetInt32(4)
+                        };
+                        summ.Add(variant);
+                    }
+                    return summ;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
     }
 }
 
@@ -470,14 +508,15 @@ public class Voice
 }
 
 public class Variant
-    {
-        public DateTime StartDate;
-        public DateTime FinishDate;
-        public int country_id;
-        public int user_id;
-        public int summit_id;
-        public bool error;
-        public string error_message;
+{
+    public int variant_id;
+    public DateTime StartDate;
+    public DateTime FinishDate;
+    public int country_id;
+    public int user_id;
+    public int summit_id;
+    public bool error;
+    public string error_message;
 }
 
 public class Summit

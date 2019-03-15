@@ -37,5 +37,8 @@ namespace SummitService
 
         [OperationContract]
         List<Summit> SelectSummit();
+
+        [OperationContract]
+        List<Variant> SelectVariant(int summit_id);
     }
 }

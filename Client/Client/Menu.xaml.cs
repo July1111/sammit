@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+
 
 namespace Client
 {
@@ -20,15 +22,18 @@ namespace Client
     /// </summary>
     public partial class Menu : Page
     {
+        ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
         public Menu()
         {
             InitializeComponent();
-            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
-            for (int i = 0; i < Service.SelectSummit().Length; i++)
-            {
-                //comboBoxSummit.Items.Add(Service.SelectSummit()[i].Summit_ID);
-                comboBoxSummit.Items.Add(Service.SelectSummit()[i].Name);
+            
+            comboBoxSummit.SelectedValuePath = "Value";
+            comboBoxSummit.DisplayMemberPath = "Text";
+
+            foreach (var element in Service.SelectSummit()) {
+                comboBoxSummit.Items.Add(new {Value = element.Summit_ID, Text = element.Name });
             }
+            
         }
 
         private void butMyVariant_Click(object sender, RoutedEventArgs e)
@@ -38,6 +43,13 @@ namespace Client
 
         private void ComboBoxCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            dataGridVariants.ItemsSource = Service.SelectVariant((int)comboBoxSummit.SelectedValue);
+            /*
+            foreach (var element in Service.SelectVariant((int)comboBoxSummit.SelectedValue)) {
+                dataGridVariants.Items.Add(element.StartDate);
+            }*/
+
+
             /*if (comboBoxSummit.Text != "")
             {
                 ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
