@@ -27,12 +27,25 @@ namespace Client
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Add.xaml", UriKind.Relative));
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            if (textBox.Text != "" && StartDate.Text != "")
+            {
+                ServiceReference1.Summit summit = new ServiceReference1.Summit();
+                summit.Date = Convert.ToDateTime(StartDate.SelectedDate);
+                summit.Name = Convert.ToString(textBox.Text);
+
+                Service.AddSummit(summit.Name,summit.Date);
+                NavigationService.Navigate(new Uri("/Admin.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Заполните все значения формы!");
+            }
         }
 
         private void butCancel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Menu.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Admin.xaml", UriKind.Relative));
         }
     }
 }

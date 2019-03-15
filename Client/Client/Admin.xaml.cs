@@ -27,17 +27,34 @@ namespace Client
 
         private void Butsummarize_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ButdeleteAllVoises_Click(object sender, RoutedEventArgs e)
         {
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            MessageBoxResult result = MessageBox.Show("Удалить все голоса?", "Голоса",
+            MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                Service.DeleteAllVoices();
+            }
+            else
+            {
+
+            }
         }
 
         private void ButaddSummit_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/Summit.xaml", UriKind.Relative));
+        }
 
+        private void ButOutput_Click(object sender, RoutedEventArgs e)
+        {
+            Login.UserID = 0;
+            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
     }
 }

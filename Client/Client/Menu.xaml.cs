@@ -56,5 +56,11 @@ namespace Client
 
             }*/
         }
+
+        private void ButOutput_Click(object sender, RoutedEventArgs e)
+        {
+            Login.UserID = 0;
+            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+        }
     }
 }
