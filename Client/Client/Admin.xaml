@@ -27,7 +27,7 @@
         <Button x:Name="butsummarize" Content="Подвести итоги" Grid.Column="1" HorizontalAlignment="Left" Margin="186.2,49.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Height="32" FontSize="14" FontFamily="Century Gothic" Click="Butsummarize_Click" />
         <Button x:Name="butdeleteAllVoises" Content="Очистить голоса" Grid.Column="1" HorizontalAlignment="Left" Margin="186.2,96.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Height="33" FontSize="14"  FontFamily="Century Gothic" Click="ButdeleteAllVoises_Click"/>
         <Button x:Name="butaddSummit" Content="Добавить саммит" Grid.Column="1" HorizontalAlignment="Left" Margin="186.2,145.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Height="33" FontSize="14"  FontFamily="Century Gothic" Click="ButaddSummit_Click"/>
-        <Button x:Name="output" Content="Выход" Grid.Column="1" HorizontalAlignment="Left" Margin="404.2,13.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="97" Height="33" FontSize="14"  FontFamily="Century Gothic"/>
+        <Button x:Name="butOutput" Content="Выход" Grid.Column="1" HorizontalAlignment="Left" Margin="404.2,13.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="97" Height="33" FontSize="14"  FontFamily="Century Gothic" Click="ButOutput_Click"/>
 
     </Grid>
 </Page>
