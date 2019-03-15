@@ -24,5 +24,20 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        private void Butsummarize_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButdeleteAllVoises_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButaddSummit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
