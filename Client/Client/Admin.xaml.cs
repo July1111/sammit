@@ -27,7 +27,29 @@ namespace Client
 
         private void Butsummarize_Click(object sender, RoutedEventArgs e)
         {
+            int sum=0;
+            int sum1=0;
+            ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
+            for (int i = 0; i < Service.Summarizing().Length; i++)
+            {
+
+                if (i==0)
+                {
+                    sum = Service.Summarizing()[i].sum;
+                }
+                else if (i==1)
+                {
+                    sum1 = Service.Summarizing()[i].sum;
+                    if (sum != sum1)
+                    { MessageBox.Show("Победил вариант " + Service.Summarizing()[i-1].variant_id + "\nс результатом в " + sum + " голоса(ов)"); }
+                    else { MessageBox.Show("Равное количество голосов, начните голосование заново, заранее удалив все голоса."); }
+                }
+            }
             
+
+
+
+
         }
 
         private void ButdeleteAllVoises_Click(object sender, RoutedEventArgs e)
@@ -39,6 +61,7 @@ namespace Client
             if (result == MessageBoxResult.Yes)
             {
                 Service.DeleteAllVoices();
+                MessageBox.Show("Голоса успешно удалены");
             }
             else
             {

@@ -30,7 +30,7 @@ namespace SummitService
         void DeleteAllVoices();
 
         [OperationContract]
-        List<Voice> Summarizing(int id);
+        List<Voice> Summarizing();
 
         [OperationContract]
         List<Country> SelectCountry();

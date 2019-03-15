@@ -599,10 +599,10 @@ namespace Client.ServiceReference1 {
         System.Threading.Tasks.Task DeleteAllVoicesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Summarizing", ReplyAction="http://tempuri.org/IService1/SummarizingResponse")]
-        Client.ServiceReference1.Voice[] Summarizing(int id);
+        Client.ServiceReference1.Voice[] Summarizing();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Summarizing", ReplyAction="http://tempuri.org/IService1/SummarizingResponse")]
-        System.Threading.Tasks.Task<Client.ServiceReference1.Voice[]> SummarizingAsync(int id);
+        System.Threading.Tasks.Task<Client.ServiceReference1.Voice[]> SummarizingAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectCountry", ReplyAction="http://tempuri.org/IService1/SelectCountryResponse")]
         Client.ServiceReference1.Country[] SelectCountry();
@@ -698,12 +698,12 @@ namespace Client.ServiceReference1 {
             return base.Channel.DeleteAllVoicesAsync();
         }
         
-        public Client.ServiceReference1.Voice[] Summarizing(int id) {
-            return base.Channel.Summarizing(id);
+        public Client.ServiceReference1.Voice[] Summarizing() {
+            return base.Channel.Summarizing();
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference1.Voice[]> SummarizingAsync(int id) {
-            return base.Channel.SummarizingAsync(id);
+        public System.Threading.Tasks.Task<Client.ServiceReference1.Voice[]> SummarizingAsync() {
+            return base.Channel.SummarizingAsync();
         }
         
         public Client.ServiceReference1.Country[] SelectCountry() {

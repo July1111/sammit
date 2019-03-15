@@ -323,7 +323,7 @@ namespace SummitService
             }
         }
 
-        public List<Voice> Summarizing(int id)
+        public List<Voice> Summarizing()
         {
             string sqlExpression = "Summarizing";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -334,12 +334,6 @@ namespace SummitService
                     CommandType = System.Data.CommandType.StoredProcedure
                 };
 
-                SqlParameter Param = new SqlParameter
-                {
-                    ParameterName = "@Summin_ID",
-                    Value = id
-                };
-                command.Parameters.Add(Param);
 
                 var reader = command.ExecuteReader();
 
