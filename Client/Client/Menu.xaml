@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Client"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="700"
+      d:DesignHeight="559.8" d:DesignWidth="730"
       Title="Menu">
 
 
@@ -24,13 +24,14 @@
             <ColumnDefinition Width="9*" ></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridVariants" HorizontalAlignment="Left" Margin="16,100,0,0" Grid.Row="1" VerticalAlignment="Top" Height="207" Grid.Column="1" Width="462" FontFamily="Century Gothic">
+        <DataGrid x:Name="dataGridVariants" HorizontalAlignment="Left" Margin="16,100,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Grid.Column="1" Width="512" FontFamily="Century Gothic">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата начала" Width="100" />
+                 <DataGridTextColumn Header="Дата начала" Width="100" />
                 <DataGridTextColumn Header="Дата окончания" Width="110" />
                 <DataGridTextColumn Header="Страна" Width="100" />
                 <DataGridTextColumn Header="Предложил" Width="100" />
+                <DataGridCheckBoxColumn Header="Голос" Width="100" />
             </DataGrid.Columns>
 
         </DataGrid>
@@ -40,6 +41,7 @@
         </ComboBox>
         <Label x:Name="labelSummit" Content="Саммит" Grid.Column="1" HorizontalAlignment="Left" Margin="15.6,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE4E4E4" FontSize="14" FontFamily="Century Gothic"/>
         <Label x:Name="labelVariant" Content="Вариант" Grid.Column="1" HorizontalAlignment="Left" Margin="15.6,71,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE5E5E5" FontSize="14" FontFamily="Century Gothic"/>
+        <Button x:Name="output" Content="Выход" Grid.Column="1" HorizontalAlignment="Left" Margin="488.6,18.4,0,0" Grid.Row="2" VerticalAlignment="Top" Width="85" Height="32" FontSize="14" FontFamily="Century Gothic" />
 
     </Grid>
 </Page>

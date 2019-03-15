@@ -30,6 +30,7 @@
   <xs:complexType name="Variant">
     <xs:sequence>
       <xs:element minOccurs="0" name="FinishDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID_Variant" type="xs:int" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="country_id" type="xs:int" />
       <xs:element minOccurs="0" name="error" type="xs:boolean" />

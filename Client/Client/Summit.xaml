@@ -24,8 +24,8 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="label" Content="Наименование" Grid.Column="1" HorizontalAlignment="Center" Margin="17.6,8,299.6,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE2E2E2" FontSize="14" FontFamily="Century Gothic" Height="27" Width="118"/>
         <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="17.6,35,17.6,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400" FontFamily="Century Gothic"/>
-        <Button x:Name="button" Content="Добавить" Grid.Column="1" HorizontalAlignment="Center" Margin="256.6,10,103.6,0" Grid.Row="2" Width="75" Height="28" VerticalAlignment="Top" Click="button_Click" FontFamily="Century Gothic"/>
-        <Button x:Name="button_Copy" Content="Отмена" Grid.Column="1" HorizontalAlignment="Center" Margin="342.6,10,17.6,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="28" Click="button_Copy_Click" FontFamily="Century Gothic" RenderTransformOrigin="0.523,0.5"/>
+        <Button x:Name="butAdd" Content="Добавить" Grid.Column="1" HorizontalAlignment="Center" Margin="256.6,10,103.6,0" Grid.Row="2" Width="75" Height="28" VerticalAlignment="Top" Click="butAdd_Click" FontFamily="Century Gothic"/>
+        <Button x:Name="butCancel" Content="Отмена" Grid.Column="1" HorizontalAlignment="Center" Margin="342.6,10,17.6,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="28" Click="butCancel_Click" FontFamily="Century Gothic" RenderTransformOrigin="0.523,0.5"/>
 
 
     </Grid>
