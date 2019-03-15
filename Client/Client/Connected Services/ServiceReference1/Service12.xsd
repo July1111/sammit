@@ -30,6 +30,7 @@
   <xs:complexType name="Variant">
     <xs:sequence>
       <xs:element minOccurs="0" name="FinishDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID_Variant" type="xs:int" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="country_id" type="xs:int" />
       <xs:element minOccurs="0" name="error" type="xs:boolean" />
@@ -67,4 +68,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSummit" nillable="true" type="tns:ArrayOfSummit" />
+  <xs:complexType name="ArrayOfVariant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Variant" nillable="true" type="tns:Variant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVariant" nillable="true" type="tns:ArrayOfVariant" />
 </xs:schema>

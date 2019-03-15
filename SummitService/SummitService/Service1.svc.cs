@@ -455,6 +455,47 @@ namespace SummitService
 
             }
         }
+
+        public List<Variant> SelectVariant()
+        {
+            string sqlExpression = "SelectVariant";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                var reader = command.ExecuteReader();
+
+                List<Variant> vari = new List<Variant>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Variant variant = new Variant
+                        {
+                            ID_Variant = reader.GetInt32(0),
+                            StartDate = reader.GetDateTime(1),
+                            FinishDate = reader.GetDateTime(2),
+                            country_id = reader.GetInt32(3),
+                            user_id = reader.GetInt32(4),
+                            summit_id = reader.GetInt32(5)
+                        };
+                        vari.Add(variant);
+                    }
+                    return vari;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
     }
 }
 
@@ -471,6 +512,7 @@ public class Voice
 
 public class Variant
     {
+        public int ID_Variant;
         public DateTime StartDate;
         public DateTime FinishDate;
         public int country_id;
