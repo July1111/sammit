@@ -114,7 +114,7 @@
             VerticalAlignment="Top"
             Content="Выход"
             FontFamily="Century Gothic"
-            FontSize="14" />
+            FontSize="14" Click="Output_Click" />
         <Label Name="label_error" FontFamily="Century Gothic"
             FontSize="14" Foreground="#FFE4E4E4" Grid.Column="1" HorizontalAlignment="Left" Margin="328,33.5,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 

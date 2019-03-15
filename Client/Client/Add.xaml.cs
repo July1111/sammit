@@ -20,24 +20,20 @@ namespace Client
     /// </summary>
     public partial class Add : Page
     {
+
         public int couID;
         public int sumID;
         public Add()
         {
             InitializeComponent();
             ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
-            comboBox_Copy.SelectedValuePath = "Value";
-            comboBox_Copy.DisplayMemberPath = "Text";
-            foreach (var element in Service.SelectCountry())
+            for (int i = 0; i < Service.SelectCountry().Length; i++)
             {
-                comboBox_Copy.Items.Add(new { Value = element.Country_ID, Text = element.Name });
+                comboBox_Copy.Items.Add(Service.SelectCountry()[i].Name);
             }
-
-            comboBox.SelectedValuePath = "Value";
-            comboBox.DisplayMemberPath = "Text";
-            foreach (var element in Service.SelectSummit())
+            for (int i = 0; i < Service.SelectSummit().Length; i++)
             {
-                comboBox.Items.Add(new { Value = element.Summit_ID, Text = element.Name });
+                comboBox.Items.Add(Service.SelectSummit()[i].Name);
             }
         }
 
@@ -76,6 +72,7 @@ namespace Client
             NavigationService.Navigate(new Uri("/Country.xaml", UriKind.Relative));
         }
 
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
@@ -98,7 +95,6 @@ namespace Client
                     couID = Service.SelectCountry()[i].Country_ID;
                 }
             }
-
         }
     }
 }
