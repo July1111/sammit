@@ -348,7 +348,10 @@ namespace SummitService
                         {
                     
                             variant_id = reader.GetInt32(0),
-                            sum = reader.GetInt32(1)
+                            sum = reader.GetInt32(1),
+                            country_name = reader.GetString(2),
+                            start_date = reader.GetDateTime(3),
+                            finish_date = reader.GetDateTime(4)
 
                         };
                         summarizing.Add(cli);
@@ -536,6 +539,9 @@ public class Voice
     public int sum;
     public bool error;
     public string error_message;
+    public string country_name;
+    public DateTime start_date;
+    public DateTime finish_date;
 }
 
 public class Variant
