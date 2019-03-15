@@ -42,5 +42,8 @@ namespace SummitService
 
         [OperationContract]
         ObservableCollection<Variant> SelectVariant(int summit_id);
+
+        [OperationContract]
+        bool CheckVoice(int user_id, int summit_id);
     }
 }

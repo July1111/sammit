@@ -653,6 +653,12 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectVariant", ReplyAction="http://tempuri.org/IService1/SelectVariantResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference1.Variant[]> SelectVariantAsync(int summit_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CheckVoice", ReplyAction="http://tempuri.org/IService1/CheckVoiceResponse")]
+        bool CheckVoice(int user_id, int summit_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CheckVoice", ReplyAction="http://tempuri.org/IService1/CheckVoiceResponse")]
+        System.Threading.Tasks.Task<bool> CheckVoiceAsync(int user_id, int summit_id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -760,6 +766,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<Client.ServiceReference1.Variant[]> SelectVariantAsync(int summit_id) {
             return base.Channel.SelectVariantAsync(summit_id);
+        }
+        
+        public bool CheckVoice(int user_id, int summit_id) {
+            return base.Channel.CheckVoice(user_id, summit_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckVoiceAsync(int user_id, int summit_id) {
+            return base.Channel.CheckVoiceAsync(user_id, summit_id);
         }
     }
 }
