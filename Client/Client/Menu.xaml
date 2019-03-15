@@ -24,10 +24,10 @@
             <ColumnDefinition Width="9*" ></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGridVariants" HorizontalAlignment="Left" Margin="16,100,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Grid.Column="1" Width="462" FontFamily="Century Gothic">
+        <DataGrid x:Name="dataGridVariants" HorizontalAlignment="Left" Margin="16,100,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Grid.Column="1" Width="512" FontFamily="Century Gothic">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата начала" Width="100" />
+                 <DataGridTextColumn Header="Дата начала" Width="100" />
                 <DataGridTextColumn Header="Дата окончания" Width="110" />
                 <DataGridTextColumn Header="Страна" Width="100" />
                 <DataGridTextColumn Header="Предложил" Width="100" />
