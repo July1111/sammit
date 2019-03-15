@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Client"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="700"
+      d:DesignHeight="559.8" d:DesignWidth="730"
       Title="Menu">
 
 
@@ -41,6 +41,7 @@
         </ComboBox>
         <Label x:Name="labelSummit" Content="Саммит" Grid.Column="1" HorizontalAlignment="Left" Margin="15.6,4,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE4E4E4" FontSize="14" FontFamily="Century Gothic"/>
         <Label x:Name="labelVariant" Content="Вариант" Grid.Column="1" HorizontalAlignment="Left" Margin="15.6,71,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFE5E5E5" FontSize="14" FontFamily="Century Gothic"/>
+        <Button x:Name="output" Content="Выход" Grid.Column="1" HorizontalAlignment="Left" Margin="488.6,18.4,0,0" Grid.Row="2" VerticalAlignment="Top" Width="85" Height="32" FontSize="14" FontFamily="Century Gothic" />
 
     </Grid>
 </Page>
