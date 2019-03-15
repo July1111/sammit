@@ -26,13 +26,18 @@ namespace Client
         {
             InitializeComponent();
             ServiceReference1.Service1Client Service = new ServiceReference1.Service1Client();
-            for (int i = 0; i < Service.SelectCountry().Length; i++)
+            comboBox_Copy.SelectedValuePath = "Value";
+            comboBox_Copy.DisplayMemberPath = "Text";
+            foreach (var element in Service.SelectCountry())
             {
-                comboBox_Copy.Items.Add(Service.SelectCountry()[i].Name);
+                comboBox_Copy.Items.Add(new { Value = element.Country_ID, Text = element.Name });
             }
-            for (int i = 0; i < Service.SelectSummit().Length; i++)
+
+            comboBox.SelectedValuePath = "Value";
+            comboBox.DisplayMemberPath = "Text";
+            foreach (var element in Service.SelectSummit())
             {
-                comboBox.Items.Add(Service.SelectSummit()[i].Name);
+                comboBox.Items.Add(new { Value = element.Summit_ID, Text = element.Name });
             }
         }
 
@@ -93,6 +98,7 @@ namespace Client
                     couID = Service.SelectCountry()[i].Country_ID;
                 }
             }
+
         }
     }
 }
