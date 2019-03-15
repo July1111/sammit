@@ -67,6 +67,12 @@
   <wsdl:message name="IService1_SelectVariant_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectVariantResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CheckVoice_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckVoice" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CheckVoice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckVoiceResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="Authorisation">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Authorisation" message="tns:IService1_Authorisation_InputMessage" />
@@ -107,6 +113,10 @@
     <wsdl:operation name="SelectVariant">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectVariant" message="tns:IService1_SelectVariant_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectVariantResponse" message="tns:IService1_SelectVariant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckVoice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CheckVoice" message="tns:IService1_CheckVoice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CheckVoiceResponse" message="tns:IService1_CheckVoice_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -194,6 +204,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectVariant">
       <soap:operation soapAction="http://tempuri.org/IService1/SelectVariant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckVoice">
+      <soap:operation soapAction="http://tempuri.org/IService1/CheckVoice" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
