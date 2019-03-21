@@ -15,7 +15,7 @@ namespace SummitService
     {
         [OperationContract]
         Auth Authorisation(string Login, string Password);
-
+        /*
         [OperationContract]
         Summit AddSummit(string summit, DateTime date);
 
@@ -44,6 +44,6 @@ namespace SummitService
         ObservableCollection<Variant> SelectVariant(int summit_id);
 
         [OperationContract]
-        bool CheckVoice(int user_id, int summit_id);
+        bool CheckVoice(int user_id, int summit_id);*/
     }
 }

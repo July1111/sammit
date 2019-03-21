@@ -14,47 +14,23 @@ namespace SummitService
     public class Service1 : IService1
     {
         //readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\npartyko\Source\Repos\sammit\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
-        readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
+        //readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Юрий\Desktop\8 семестр\Проектирование ИСУ\репоз\SummitService\SummitService\App_Data\SummitDB.mdf;Integrated Security=True";
         public Auth Authorisation(string Login, string Password)
         {
             Auth auth = new Auth();
             if (FindByLoginUsers(Login, Password))
             {
-                string sqlExpression = "Authorisation";
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SummitDBEntity summit = new SummitDBEntity())
                 {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    User use = summit.Users
+                               .Where(s => s.Login == Login)
+                               .Where(p => p.Password == Password)
+                               .FirstOrDefault();
+                    if (use != null)
                     {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
-
-                    SqlParameter LoginParam = new SqlParameter
-                    {
-                        ParameterName = "@Login",
-                        Value = Login
-                    };
-                    command.Parameters.Add(LoginParam);
-
-                    SqlParameter PasswordParam = new SqlParameter
-                    {
-                        ParameterName = "@Password",
-                        Value = Password
-                    };
-                    command.Parameters.Add(PasswordParam);
-
-                    var reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            int id = reader.GetInt32(0);
-                            auth.error = false;
-                            auth.error_message = null;
-                            auth.id_user = id;
-
-                        }
+                        auth.error = false;
+                        auth.error_message = null;
+                        auth.id_user = use.ID_User;
                         return auth;
                     }
                     else
@@ -64,6 +40,7 @@ namespace SummitService
                         return auth;
                     }
                 }
+
             }
             else
             {
@@ -75,32 +52,13 @@ namespace SummitService
 
         public bool FindByLoginUsers(string Login, string Password)
         {
-            string FindByLoginUsers = "Authorisation";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(FindByLoginUsers, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                SqlParameter LoginParam = new SqlParameter
-                {
-                    ParameterName = "@Login",
-                    Value = Login
-                };
-                command.Parameters.Add(LoginParam);
-
-                SqlParameter PasswordParam = new SqlParameter
-                {
-                    ParameterName = "@Password",
-                    Value = Password
-                };
-                command.Parameters.Add(PasswordParam);
-
-                var reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                User use = summit.Users
+                           .Where(s => s.Login == Login)
+                           .Where(p => p.Password == Password)
+                           .FirstOrDefault();
+                if (use != null)
                 {
                     return true;
                 }
@@ -112,7 +70,7 @@ namespace SummitService
             }
         }
 
-        public Summit AddSummit(string name, DateTime date)
+       /* public Summit AddSummit(string name, DateTime date)
         {
             string sqlExpression = "AddSummit";
             Summit summit = new Summit();
@@ -526,12 +484,12 @@ namespace SummitService
 
             }
 
-        }
+        }*/
     }
 }
 
 
-
+/*
 public class Voice
 {
     public int user_id;
@@ -565,7 +523,7 @@ public class Summit
         public DateTime Date;
         public bool error;
         public string error_message;
-    }
+    }*/
 
 public class Auth
     {
@@ -573,14 +531,14 @@ public class Auth
         public string error_message;
         public int id_user;
     }
-
+/*
 public class Country
 {
     public bool error;
     public string error_message;
     public int Country_ID;
     public string Name;
-}
+}*/
 
 
 

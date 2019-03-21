@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SummitDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID_Country" />
+          </Key>
+          <Property Name="ID_Country" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Summit">
+          <Key>
+            <PropertyRef Name="ID_Summit" />
+          </Key>
+          <Property Name="ID_Summit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="ID_Variant" />
+          </Key>
+          <Property Name="ID_Variant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="FinishDate" Type="date" Nullable="false" />
+          <Property Name="Country_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Summit_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voice">
+          <Key>
+            <PropertyRef Name="ID_Voice" />
+          </Key>
+          <Property Name="ID_Voice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Variant_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Variant_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID_Country" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variant_Summit">
+          <End Role="Summit" Type="Self.Summit" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Summit">
+              <PropertyRef Name="ID_Summit" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="Summit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variant_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voice_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Voice" Type="Self.Voice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Voice">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voice_Variant">
+          <End Role="Variant" Type="Self.Variant" Multiplicity="1" />
+          <End Role="Voice" Type="Self.Voice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="ID_Variant" />
+            </Principal>
+            <Dependent Role="Voice">
+              <PropertyRef Name="Variant_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddSummit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="AddVariant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="FinishDate" Type="date" Mode="In" />
+          <Parameter Name="Country_ID" Type="int" Mode="In" />
+          <Parameter Name="User_ID" Type="int" Mode="In" />
+          <Parameter Name="Summit_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddVoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="int" Mode="In" />
+          <Parameter Name="Variant_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Authorisation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteAllVoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="SelectCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectSummit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectVariant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Summarizing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище SummitDBModelContainer">
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Summit" EntityType="Self.Summit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variant" EntityType="Self.Variant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voice" EntityType="Self.Voice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Variant_Country" Association="Self.FK_Variant_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Variant" EntitySet="Variant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variant_Summit" Association="Self.FK_Variant_Summit">
+            <End Role="Summit" EntitySet="Summit" />
+            <End Role="Variant" EntitySet="Variant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variant_User" Association="Self.FK_Variant_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Variant" EntitySet="Variant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voice_User" Association="Self.FK_Voice_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Voice" EntitySet="Voice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voice_Variant" Association="Self.FK_Voice_Variant">
+            <End Role="Variant" EntitySet="Variant" />
+            <End Role="Voice" EntitySet="Voice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SummitDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID_Country" />
+          </Key>
+          <Property Name="ID_Country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Summit">
+          <Key>
+            <PropertyRef Name="ID_Summit" />
+          </Key>
+          <Property Name="ID_Summit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          </EntityType>
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="ID_Variant" />
+          </Key>
+          <Property Name="ID_Variant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Country_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Summit_ID" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="Voice">
+          <Key>
+            <PropertyRef Name="ID_Voice" />
+          </Key>
+          <Property Name="ID_Voice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Variant_ID" Type="Int32" Nullable="false" />
+          </EntityType>
+        <Association Name="FK_Variant_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID_Country" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variant_Summit">
+          <End Role="Summit" Type="Self.Summit" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Summit">
+              <PropertyRef Name="ID_Summit" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="Summit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variant_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voice_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Voice" Type="Self.Voice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Voice">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voice_Variant">
+          <End Role="Variant" Type="Self.Variant" Multiplicity="1" />
+          <End Role="Voice" Type="Self.Voice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="ID_Variant" />
+            </Principal>
+            <Dependent Role="Voice">
+              <PropertyRef Name="Variant_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SummitDBEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Summits" EntityType="Self.Summit" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Variants" EntityType="Self.Variant" />
+          <EntitySet Name="Voices" EntityType="Self.Voice" />
+          <AssociationSet Name="FK_Variant_Country" Association="Self.FK_Variant_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Variant" EntitySet="Variants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variant_Summit" Association="Self.FK_Variant_Summit">
+            <End Role="Summit" EntitySet="Summits" />
+            <End Role="Variant" EntitySet="Variants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variant_User" Association="Self.FK_Variant_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Variant" EntitySet="Variants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voice_User" Association="Self.FK_Voice_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Voice" EntitySet="Voices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voice_Variant" Association="Self.FK_Voice_Variant">
+            <End Role="Variant" EntitySet="Variants" />
+            <End Role="Voice" EntitySet="Voices" />
+          </AssociationSet>
+          <FunctionImport Name="AddCountry">
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddSummit">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="AddVariant">
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Country_ID" Mode="In" Type="Int32" />
+            <Parameter Name="User_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Summit_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddVoice">
+            <Parameter Name="User_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Variant_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Authorisation" ReturnType="Collection(Int32)">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteAllVoices" />
+          <FunctionImport Name="SelectCountry" ReturnType="Collection(SummitDBModel.SelectCountry_Result)" />
+          <FunctionImport Name="SelectSummit" ReturnType="Collection(SummitDBModel.SelectSummit_Result)" />
+          <FunctionImport Name="SelectVariant" ReturnType="Collection(SummitDBModel.SelectVariant_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SummitDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SummitDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Summarizing" ReturnType="Collection(SummitDBModel.Summarizing_Result)" />
+        </EntityContainer>
+        <ComplexType Name="SelectCountry_Result">
+          <Property Type="Int32" Name="ID_Country" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectSummit_Result">
+          <Property Type="Int32" Name="ID_Summit" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SelectVariant_Result">
+          <Property Type="Int32" Name="ID_Variant" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="FinishDate" Nullable="false" />
+          <Property Type="Int32" Name="Country_ID" Nullable="false" />
+          <Property Type="Int32" Name="User_ID" Nullable="false" />
+          <Property Type="Int32" Name="Summit_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Summarizing_Result">
+          <Property Type="Int32" Name="Variant_ID" Nullable="false" />
+          <Property Type="Int32" Name="Количество_голосов" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="FinishDate" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SummitDBModelContainer" CdmEntityContainer="SummitDBEntity">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="SummitDBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="ID_Country" ColumnName="ID_Country" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Summits">
+            <EntityTypeMapping TypeName="SummitDBModel.Summit">
+              <MappingFragment StoreEntitySet="Summit">
+                <ScalarProperty Name="ID_Summit" ColumnName="ID_Summit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SummitDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SummitDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variants">
+            <EntityTypeMapping TypeName="SummitDBModel.Variant">
+              <MappingFragment StoreEntitySet="Variant">
+                <ScalarProperty Name="ID_Variant" ColumnName="ID_Variant" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Summit_ID" ColumnName="Summit_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voices">
+            <EntityTypeMapping TypeName="SummitDBModel.Voice">
+              <MappingFragment StoreEntitySet="Voice">
+                <ScalarProperty Name="ID_Voice" ColumnName="ID_Voice" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Variant_ID" ColumnName="Variant_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddCountry" FunctionName="Хранилище SummitDBModel.AddCountry" />
+          <FunctionImportMapping FunctionImportName="AddSummit" FunctionName="Хранилище SummitDBModel.AddSummit" />
+          <FunctionImportMapping FunctionImportName="AddVariant" FunctionName="Хранилище SummitDBModel.AddVariant" />
+          <FunctionImportMapping FunctionImportName="AddVoice" FunctionName="Хранилище SummitDBModel.AddVoice" />
+          <FunctionImportMapping FunctionImportName="Authorisation" FunctionName="Хранилище SummitDBModel.Authorisation" />
+          <FunctionImportMapping FunctionImportName="DeleteAllVoices" FunctionName="Хранилище SummitDBModel.DeleteAllVoices" />
+          <FunctionImportMapping FunctionImportName="SelectCountry" FunctionName="Хранилище SummitDBModel.SelectCountry">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.SelectCountry_Result">
+                <ScalarProperty Name="ID_Country" ColumnName="ID_Country" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectSummit" FunctionName="Хранилище SummitDBModel.SelectSummit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.SelectSummit_Result">
+                <ScalarProperty Name="ID_Summit" ColumnName="ID_Summit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectVariant" FunctionName="Хранилище SummitDBModel.SelectVariant">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.SelectVariant_Result">
+                <ScalarProperty Name="ID_Variant" ColumnName="ID_Variant" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Summit_ID" ColumnName="Summit_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище SummitDBModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище SummitDBModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище SummitDBModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище SummitDBModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище SummitDBModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище SummitDBModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище SummitDBModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Summarizing" FunctionName="Хранилище SummitDBModel.Summarizing">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SummitDBModel.Summarizing_Result">
+                <ScalarProperty Name="Variant_ID" ColumnName="Variant_ID" />
+                <ScalarProperty Name="Количество_голосов" ColumnName="Количество голосов" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
