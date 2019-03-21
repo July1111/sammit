@@ -41,7 +41,7 @@ namespace Client
                 {
                     sum1 = Service.Summarizing()[i].sum;
                     if (sum != sum1)
-                    { MessageBox.Show("Победил вариант " + Service.Summarizing()[i-1].variant_id + "\nс результатом в " + sum + " голоса(ов)"); }
+                    { MessageBox.Show("Победил вариант:\n" + Service.Summarizing()[i-1].country_name + "\n" + Service.Summarizing()[i-1].start_date.ToString("dd/MM/yyyy") + "\n" + Service.Summarizing()[i - 1].finish_date.ToString("dd/MM/yyyy") + "\nс результатом в " + sum + " голоса(ов)"); }
                     else { MessageBox.Show("Равное количество голосов, начните голосование заново, заранее удалив все голоса."); }
                 }
             }

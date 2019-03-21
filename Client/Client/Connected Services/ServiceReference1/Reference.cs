@@ -491,10 +491,19 @@ namespace Client.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string country_nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool errorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string error_messageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime finish_dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime start_dateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int sumField;
@@ -512,6 +521,19 @@ namespace Client.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string country_name {
+            get {
+                return this.country_nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.country_nameField, value) != true)) {
+                    this.country_nameField = value;
+                    this.RaisePropertyChanged("country_name");
+                }
             }
         }
         
@@ -537,6 +559,32 @@ namespace Client.ServiceReference1 {
                 if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
                     this.error_messageField = value;
                     this.RaisePropertyChanged("error_message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime finish_date {
+            get {
+                return this.finish_dateField;
+            }
+            set {
+                if ((this.finish_dateField.Equals(value) != true)) {
+                    this.finish_dateField = value;
+                    this.RaisePropertyChanged("finish_date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime start_date {
+            get {
+                return this.start_dateField;
+            }
+            set {
+                if ((this.start_dateField.Equals(value) != true)) {
+                    this.start_dateField = value;
+                    this.RaisePropertyChanged("start_date");
                 }
             }
         }

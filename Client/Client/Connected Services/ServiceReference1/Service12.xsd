@@ -44,8 +44,11 @@
   <xs:element name="Variant" nillable="true" type="tns:Variant" />
   <xs:complexType name="Voice">
     <xs:sequence>
+      <xs:element minOccurs="0" name="country_name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="error" type="xs:boolean" />
       <xs:element minOccurs="0" name="error_message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="finish_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="start_date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="sum" type="xs:int" />
       <xs:element minOccurs="0" name="user_id" type="xs:int" />
       <xs:element minOccurs="0" name="variant_id" type="xs:int" />
