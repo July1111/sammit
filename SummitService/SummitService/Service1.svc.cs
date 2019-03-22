@@ -70,168 +70,41 @@ namespace SummitService
             }
         }
 
-       /* public Summit AddSummit(string name, DateTime date)
+        public Summit AddSummit(Summit sum)
         {
-            string sqlExpression = "AddSummit";
-            Summit summit = new Summit();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-
-                SqlCommand command1 = new SqlCommand("Select count(*) from Summit where Name = @name", connection);
-                command1.Parameters.AddWithValue("@name", name);
-                int count_summit = (int)command1.ExecuteScalar();
-
-                if (count_summit == 0)
+                var count = summit.Summits
+                            .Where(s => s.Name == sum.Name)
+                            .Count();
+                if (count == 0)
                 {
-
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
-                    {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
-
-                    SqlParameter NameParam = new SqlParameter
-                    {
-                        ParameterName = "@Name",
-                        Value = name
-                    };
-                    command.Parameters.Add(NameParam);
-
-                    SqlParameter DateParam = new SqlParameter
-                    {
-                        ParameterName = "@Date",
-                        Value = date
-                    };
-                    command.Parameters.Add(DateParam);
-
-                    var result = command.ExecuteScalar();
-                    summit.error = false;
-                    return summit;
-                }
-                
-
-                else {
-                        summit.error = true;
-                        summit.error_message = "Такой саммит уже сущесвтует!";
-                    return summit;
-
-                }
-                
+                    summit.Summits.Add(sum);
+                    summit.SaveChanges();
+                }   
             }
+            return sum;
         }
 
-        public Country AddCountry(string name)
+        public Country AddCountry(Country cou)
         {
-            string sqlExpression = "AddCountry";
-            Country country = new Country();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-                SqlCommand command1 = new SqlCommand("Select count(*) from Country where Name = @name", connection);
-                command1.Parameters.AddWithValue("@name", name);
-                int count_country = (int)command1.ExecuteScalar();
-
-                if (count_country == 0)
+                var count = summit.Countries
+                            .Where(s => s.Name == cou.Name)
+                            .Count();
+                if (count == 0)
                 {
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
-                    {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
-
-                    SqlParameter CountryNameParamet = new SqlParameter
-                    {
-                        ParameterName = "@Name",
-                        Value = name
-                    };
-                    command.Parameters.Add(CountryNameParamet);
-
-                    var result = command.ExecuteScalar();
-                    country.error = false;
-                    return country;
-
+                    summit.Countries.Add(cou);
+                    summit.SaveChanges();
                 }
-                else {
-                    country.error = true;
-                    country.error_message = "такая страна уже сущесвтует!";
-                    return country;
-                }
-           
             }
+            return cou;
         }
 
-        public Variant AddVariant(DateTime StartDate, DateTime FinishDate, int country_id, int user_id, int summit_id)
+        public Variant AddVariant(Variant va)
         {
-            string sqlExpression = "AddVariant";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                Variant variant = new Variant();
 
-                SqlCommand command1 = new SqlCommand("Select count(*) from Variant where User_ID = @user_id AND Summit_ID = @summit_id AND Country_ID = @country_id", connection);
-                command1.Parameters.AddWithValue("@user_id", user_id);
-                command1.Parameters.AddWithValue("@summit_id", summit_id);
-                command1.Parameters.AddWithValue("@country_id", country_id);
-                int count_variantsFromOneUser = (int)command1.ExecuteScalar();
-
-                if (count_variantsFromOneUser == 0)
-                {
-
-                    SqlCommand command = new SqlCommand(sqlExpression, connection)
-                    {
-                        CommandType = System.Data.CommandType.StoredProcedure
-                    };
-
-                    SqlParameter DateStart = new SqlParameter
-                    {
-                        ParameterName = "@StartDate",
-                        Value = StartDate
-                    };
-                    command.Parameters.Add(DateStart);
-
-                    SqlParameter DateFinish = new SqlParameter
-                    {
-                        ParameterName = "@FinishDate",
-                        Value = FinishDate
-                    };
-                    command.Parameters.Add(DateFinish);
-
-
-                    SqlParameter country_idParam = new SqlParameter
-                    {
-                        ParameterName = "@Country_ID",
-                        Value = country_id
-                    };
-                    command.Parameters.Add(country_idParam);
-
-
-                    SqlParameter user_idParam = new SqlParameter
-                    {
-                        ParameterName = "@User_ID",
-                        Value = user_id
-                    };
-                    command.Parameters.Add(user_idParam);
-
-
-                    SqlParameter summit_idParam = new SqlParameter
-                    {
-                        ParameterName = "@Summit_ID",
-                        Value = summit_id
-                    };
-                    command.Parameters.Add(summit_idParam);
-
-                    var result = command.ExecuteScalar();
-                    variant.error = false;
-                    return variant;
-                }
-                else
-                {
-                    variant.error = true;
-                    variant.error_message = "Вариант с такими параметрами от данного пользователя уже был!";
-                    return variant;
-                }
-            }
         }
 
         public Voice AddVoice(int user_id, int variant_id)
@@ -281,211 +154,210 @@ namespace SummitService
                     return voice;
                 }
             }
-        }
-
-        public List<Voice> Summarizing()
-        {
-            string sqlExpression = "Summarizing";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            /*
+            public List<Voice> Summarizing()
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
+                string sqlExpression = "Summarizing";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-
-                var reader = command.ExecuteReader();
-
-                List<Voice> summarizing = new List<Voice>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
                     {
-                        Voice cli = new Voice
-                        {
-                    
-                            variant_id = reader.GetInt32(0),
-                            sum = reader.GetInt32(1),
-                            country_name = reader.GetString(2),
-                            start_date = reader.GetDateTime(3),
-                            finish_date = reader.GetDateTime(4)
-
-                        };
-                        summarizing.Add(cli);
-                    }
-                    return summarizing;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-        }
-
-        public List<Country> SelectCountry()
-        {
-            string sqlExpression = "SelectCountry";
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
 
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
+                    var reader = command.ExecuteReader();
 
-                var reader = command.ExecuteReader();
-
-                List<Country> summarizing = new List<Country>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
+                    List<Voice> summarizing = new List<Voice>();
+                    if (reader.HasRows)
                     {
-                        Country cli = new Country
+                        while (reader.Read())
                         {
-                            Country_ID = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        };
-                        summarizing.Add(cli);
+                            Voice cli = new Voice
+                            {
+
+                                variant_id = reader.GetInt32(0),
+                                sum = reader.GetInt32(1),
+                                country_name = reader.GetString(2),
+                                start_date = reader.GetDateTime(3),
+                                finish_date = reader.GetDateTime(4)
+
+                            };
+                            summarizing.Add(cli);
+                        }
+                        return summarizing;
                     }
-                    return summarizing;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-        }
-
-        public void DeleteAllVoices()
-        {
-            string sqlExpression = "DeleteAllVoices";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-                var result = command.ExecuteScalar();
-                connection.Close();
-            }
-        }
-
-        public List<Summit> SelectSummit()
-        {
-            string sqlExpression = "SelectSummit";
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                var reader = command.ExecuteReader();
-
-                List<Summit> summ = new List<Summit>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
+                    else
                     {
-                        Summit summit = new Summit
-                        {
-                            Summit_ID = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        };
-                        summ.Add(summit);
+                        return null;
                     }
-                    return summ;
-                }
-                else
-                {
-                    return null;
-                }
 
+                }
             }
-        }
 
-        public ObservableCollection<Variant> SelectVariant(int summit_id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            public List<Country> SelectCountry()
             {
-                connection.Open();
+                string sqlExpression = "SelectCountry";
 
-                string sql = @"Select Variant.ID_Variant as 'id', Variant.StartDate as 'StartDate', Variant.FinishDate as 'FinishDate', Country.Name as 'Country', [User].FIO as 'User'  from Variant
-                                inner join Country on Country.ID_Country = Variant.Country_ID
-                                inner join [User] on [User].ID_User = Variant.User_ID
-                                where Summit_ID = @summit_id";
 
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@summit_id", summit_id);
-                
-                
-
-                var reader = command.ExecuteReader();
-
-                ObservableCollection<Variant> summ = new ObservableCollection<Variant>();
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
                     {
-                        Variant variant = new Variant
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
+
+                    var reader = command.ExecuteReader();
+
+                    List<Country> summarizing = new List<Country>();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
                         {
-                            variant_id = reader.GetInt32(0),
-                            StartDate = reader.GetDateTime(1),
-                            FinishDate = reader.GetDateTime(2),
-                            country = reader.GetString(3),
-                            user = reader.GetString(4)
-                        };
-                        summ.Add(variant);
+                            Country cli = new Country
+                            {
+                                Country_ID = reader.GetInt32(0),
+                                Name = reader.GetString(1)
+                            };
+                            summarizing.Add(cli);
+                        }
+                        return summarizing;
                     }
-                    return summ;
-                }
-                else
-                {
-                    return null;
-                }
+                    else
+                    {
+                        return null;
+                    }
 
+                }
             }
-        }
 
-        public bool CheckVoice(int user_id, int summit_id) {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            public void DeleteAllVoices()
             {
-                connection.Open();
-
-                string sql = @"Select Voice.ID_Voice as 'ID_voice' , Voice.User_ID as 'User_id', Variant.Summit_ID from Voice 
-                                inner join Variant on  Variant.ID_Variant = Voice.Variant_ID
-                                where Voice.User_ID = @user_id and Variant.Summit_ID = @summit_id";
-
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@summit_id", summit_id);
-                command.Parameters.AddWithValue("@user_id", user_id);
-
-
-                var reader = command.ExecuteReader();
-
-             
-                if (reader.HasRows)
+                string sqlExpression = "DeleteAllVoices";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    return true;
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    {
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
+                    var result = command.ExecuteScalar();
+                    connection.Close();
                 }
-                else
-                {
-                    return false;
-                }
-
             }
 
-        }*/
-    }
+            public List<Summit> SelectSummit()
+            {
+                string sqlExpression = "SelectSummit";
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection)
+                    {
+                        CommandType = System.Data.CommandType.StoredProcedure
+                    };
+
+                    var reader = command.ExecuteReader();
+
+                    List<Summit> summ = new List<Summit>();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Summit summit = new Summit
+                            {
+                                Summit_ID = reader.GetInt32(0),
+                                Name = reader.GetString(1)
+                            };
+                            summ.Add(summit);
+                        }
+                        return summ;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+
+            public ObservableCollection<Variant> SelectVariant(int summit_id)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string sql = @"Select Variant.ID_Variant as 'id', Variant.StartDate as 'StartDate', Variant.FinishDate as 'FinishDate', Country.Name as 'Country', [User].FIO as 'User'  from Variant
+                                    inner join Country on Country.ID_Country = Variant.Country_ID
+                                    inner join [User] on [User].ID_User = Variant.User_ID
+                                    where Summit_ID = @summit_id";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@summit_id", summit_id);
+
+
+
+                    var reader = command.ExecuteReader();
+
+                    ObservableCollection<Variant> summ = new ObservableCollection<Variant>();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Variant variant = new Variant
+                            {
+                                variant_id = reader.GetInt32(0),
+                                StartDate = reader.GetDateTime(1),
+                                FinishDate = reader.GetDateTime(2),
+                                country = reader.GetString(3),
+                                user = reader.GetString(4)
+                            };
+                            summ.Add(variant);
+                        }
+                        return summ;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+
+            public bool CheckVoice(int user_id, int summit_id) {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string sql = @"Select Voice.ID_Voice as 'ID_voice' , Voice.User_ID as 'User_id', Variant.Summit_ID from Voice 
+                                    inner join Variant on  Variant.ID_Variant = Voice.Variant_ID
+                                    where Voice.User_ID = @user_id and Variant.Summit_ID = @summit_id";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@summit_id", summit_id);
+                    command.Parameters.AddWithValue("@user_id", user_id);
+
+
+                    var reader = command.ExecuteReader();
+
+
+                    if (reader.HasRows)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
+            }*/
+        }
 }
 
 

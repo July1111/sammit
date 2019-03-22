@@ -15,19 +15,19 @@ namespace SummitService
     {
         [OperationContract]
         Auth Authorisation(string Login, string Password);
-        /*
+        
         [OperationContract]
-        Summit AddSummit(string summit, DateTime date);
-
+        Summit AddSummit(Summit sum);
+        
         [OperationContract]
-        Country AddCountry(string country);
-
+        Country AddCountry(Country cou);
+        
         [OperationContract]
-        Variant AddVariant(DateTime StartDate, DateTime FinishDate, int country_id, int user_id, int summit_id);
-
+        Variant AddVariant(Variant va);
+        
         [OperationContract]
         Voice AddVoice(int user_id, int variant_id);
-
+        
         [OperationContract]
         void DeleteAllVoices();
 
