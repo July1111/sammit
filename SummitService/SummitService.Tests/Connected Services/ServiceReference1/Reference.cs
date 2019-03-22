@@ -9,556 +9,41 @@
 //------------------------------------------------------------------------------
 
 namespace SummitService.Tests.ServiceReference1 {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Auth", Namespace="http://schemas.datacontract.org/2004/07/")]
-    [System.SerializableAttribute()]
-    public partial class Auth : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool errorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string error_messageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int id_userField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool error {
-            get {
-                return this.errorField;
-            }
-            set {
-                if ((this.errorField.Equals(value) != true)) {
-                    this.errorField = value;
-                    this.RaisePropertyChanged("error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string error_message {
-            get {
-                return this.error_messageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
-                    this.error_messageField = value;
-                    this.RaisePropertyChanged("error_message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id_user {
-            get {
-                return this.id_userField;
-            }
-            set {
-                if ((this.id_userField.Equals(value) != true)) {
-                    this.id_userField = value;
-                    this.RaisePropertyChanged("id_user");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Summit", Namespace="http://schemas.datacontract.org/2004/07/")]
-    [System.SerializableAttribute()]
-    public partial class Summit : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool errorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string error_messageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool error {
-            get {
-                return this.errorField;
-            }
-            set {
-                if ((this.errorField.Equals(value) != true)) {
-                    this.errorField = value;
-                    this.RaisePropertyChanged("error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string error_message {
-            get {
-                return this.error_messageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
-                    this.error_messageField = value;
-                    this.RaisePropertyChanged("error_message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Country", Namespace="http://schemas.datacontract.org/2004/07/")]
-    [System.SerializableAttribute()]
-    public partial class Country : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Country_IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool errorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string error_messageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Country_ID {
-            get {
-                return this.Country_IDField;
-            }
-            set {
-                if ((this.Country_IDField.Equals(value) != true)) {
-                    this.Country_IDField = value;
-                    this.RaisePropertyChanged("Country_ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool error {
-            get {
-                return this.errorField;
-            }
-            set {
-                if ((this.errorField.Equals(value) != true)) {
-                    this.errorField = value;
-                    this.RaisePropertyChanged("error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string error_message {
-            get {
-                return this.error_messageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
-                    this.error_messageField = value;
-                    this.RaisePropertyChanged("error_message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Variant", Namespace="http://schemas.datacontract.org/2004/07/")]
-    [System.SerializableAttribute()]
-    public partial class Variant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime FinishDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime StartDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int country_idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool errorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string error_messageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int summit_idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int user_idField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime FinishDate {
-            get {
-                return this.FinishDateField;
-            }
-            set {
-                if ((this.FinishDateField.Equals(value) != true)) {
-                    this.FinishDateField = value;
-                    this.RaisePropertyChanged("FinishDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime StartDate {
-            get {
-                return this.StartDateField;
-            }
-            set {
-                if ((this.StartDateField.Equals(value) != true)) {
-                    this.StartDateField = value;
-                    this.RaisePropertyChanged("StartDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int country_id {
-            get {
-                return this.country_idField;
-            }
-            set {
-                if ((this.country_idField.Equals(value) != true)) {
-                    this.country_idField = value;
-                    this.RaisePropertyChanged("country_id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool error {
-            get {
-                return this.errorField;
-            }
-            set {
-                if ((this.errorField.Equals(value) != true)) {
-                    this.errorField = value;
-                    this.RaisePropertyChanged("error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string error_message {
-            get {
-                return this.error_messageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
-                    this.error_messageField = value;
-                    this.RaisePropertyChanged("error_message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int summit_id {
-            get {
-                return this.summit_idField;
-            }
-            set {
-                if ((this.summit_idField.Equals(value) != true)) {
-                    this.summit_idField = value;
-                    this.RaisePropertyChanged("summit_id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int user_id {
-            get {
-                return this.user_idField;
-            }
-            set {
-                if ((this.user_idField.Equals(value) != true)) {
-                    this.user_idField = value;
-                    this.RaisePropertyChanged("user_id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Voice", Namespace="http://schemas.datacontract.org/2004/07/")]
-    [System.SerializableAttribute()]
-    public partial class Voice : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool errorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string error_messageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int sumField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int user_idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int variant_idField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool error {
-            get {
-                return this.errorField;
-            }
-            set {
-                if ((this.errorField.Equals(value) != true)) {
-                    this.errorField = value;
-                    this.RaisePropertyChanged("error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string error_message {
-            get {
-                return this.error_messageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.error_messageField, value) != true)) {
-                    this.error_messageField = value;
-                    this.RaisePropertyChanged("error_message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int sum {
-            get {
-                return this.sumField;
-            }
-            set {
-                if ((this.sumField.Equals(value) != true)) {
-                    this.sumField = value;
-                    this.RaisePropertyChanged("sum");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int user_id {
-            get {
-                return this.user_idField;
-            }
-            set {
-                if ((this.user_idField.Equals(value) != true)) {
-                    this.user_idField = value;
-                    this.RaisePropertyChanged("user_id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int variant_id {
-            get {
-                return this.variant_idField;
-            }
-            set {
-                if ((this.variant_idField.Equals(value) != true)) {
-                    this.variant_idField = value;
-                    this.RaisePropertyChanged("variant_id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Authorisation", ReplyAction="http://tempuri.org/IService1/AuthorisationResponse")]
-        SummitService.Tests.ServiceReference1.Auth Authorisation(string Login, string Password);
+        Auth Authorisation(string Login, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Authorisation", ReplyAction="http://tempuri.org/IService1/AuthorisationResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Auth> AuthorisationAsync(string Login, string Password);
+        System.Threading.Tasks.Task<Auth> AuthorisationAsync(string Login, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddSummit", ReplyAction="http://tempuri.org/IService1/AddSummitResponse")]
-        SummitService.Tests.ServiceReference1.Summit AddSummit(string summit, System.DateTime date);
+        SummitService.Summit AddSummit(SummitService.Summit sum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddSummit", ReplyAction="http://tempuri.org/IService1/AddSummitResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Summit> AddSummitAsync(string summit, System.DateTime date);
+        System.Threading.Tasks.Task<SummitService.Summit> AddSummitAsync(SummitService.Summit sum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddCountry", ReplyAction="http://tempuri.org/IService1/AddCountryResponse")]
-        SummitService.Tests.ServiceReference1.Country AddCountry(string country);
+        SummitService.Country AddCountry(SummitService.Country cou);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddCountry", ReplyAction="http://tempuri.org/IService1/AddCountryResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Country> AddCountryAsync(string country);
+        System.Threading.Tasks.Task<SummitService.Country> AddCountryAsync(SummitService.Country cou);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVariant", ReplyAction="http://tempuri.org/IService1/AddVariantResponse")]
-        SummitService.Tests.ServiceReference1.Variant AddVariant(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id);
+        SummitService.Variant AddVariant(SummitService.Variant va);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVariant", ReplyAction="http://tempuri.org/IService1/AddVariantResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Variant> AddVariantAsync(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id);
+        System.Threading.Tasks.Task<SummitService.Variant> AddVariantAsync(SummitService.Variant va);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVoice", ReplyAction="http://tempuri.org/IService1/AddVoiceResponse")]
-        SummitService.Tests.ServiceReference1.Voice AddVoice(int user_id, int variant_id);
+        SummitService.Voice AddVoice(SummitService.Voice vo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddVoice", ReplyAction="http://tempuri.org/IService1/AddVoiceResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice> AddVoiceAsync(int user_id, int variant_id);
+        System.Threading.Tasks.Task<SummitService.Voice> AddVoiceAsync(SummitService.Voice vo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAllVoices", ReplyAction="http://tempuri.org/IService1/DeleteAllVoicesResponse")]
         void DeleteAllVoices();
@@ -566,17 +51,17 @@ namespace SummitService.Tests.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAllVoices", ReplyAction="http://tempuri.org/IService1/DeleteAllVoicesResponse")]
         System.Threading.Tasks.Task DeleteAllVoicesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Summarizing", ReplyAction="http://tempuri.org/IService1/SummarizingResponse")]
-        SummitService.Tests.ServiceReference1.Voice[] Summarizing(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Summarizing", ReplyAction="http://tempuri.org/IService1/SummarizingResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice[]> SummarizingAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectCountry", ReplyAction="http://tempuri.org/IService1/SelectCountryResponse")]
+        SummitService.Country[] SelectCountry();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectCountry", ReplyAction="http://tempuri.org/IService1/SelectCountryResponse")]
-        SummitService.Tests.ServiceReference1.Country[] SelectCountry();
+        System.Threading.Tasks.Task<SummitService.Country[]> SelectCountryAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectCountry", ReplyAction="http://tempuri.org/IService1/SelectCountryResponse")]
-        System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Country[]> SelectCountryAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectSummit", ReplyAction="http://tempuri.org/IService1/SelectSummitResponse")]
+        SummitService.Summit[] SelectSummit();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectSummit", ReplyAction="http://tempuri.org/IService1/SelectSummitResponse")]
+        System.Threading.Tasks.Task<SummitService.Summit[]> SelectSummitAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -606,44 +91,44 @@ namespace SummitService.Tests.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public SummitService.Tests.ServiceReference1.Auth Authorisation(string Login, string Password) {
+        public Auth Authorisation(string Login, string Password) {
             return base.Channel.Authorisation(Login, Password);
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Auth> AuthorisationAsync(string Login, string Password) {
+        public System.Threading.Tasks.Task<Auth> AuthorisationAsync(string Login, string Password) {
             return base.Channel.AuthorisationAsync(Login, Password);
         }
         
-        public SummitService.Tests.ServiceReference1.Summit AddSummit(string summit, System.DateTime date) {
-            return base.Channel.AddSummit(summit, date);
+        public SummitService.Summit AddSummit(SummitService.Summit sum) {
+            return base.Channel.AddSummit(sum);
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Summit> AddSummitAsync(string summit, System.DateTime date) {
-            return base.Channel.AddSummitAsync(summit, date);
+        public System.Threading.Tasks.Task<SummitService.Summit> AddSummitAsync(SummitService.Summit sum) {
+            return base.Channel.AddSummitAsync(sum);
         }
         
-        public SummitService.Tests.ServiceReference1.Country AddCountry(string country) {
-            return base.Channel.AddCountry(country);
+        public SummitService.Country AddCountry(SummitService.Country cou) {
+            return base.Channel.AddCountry(cou);
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Country> AddCountryAsync(string country) {
-            return base.Channel.AddCountryAsync(country);
+        public System.Threading.Tasks.Task<SummitService.Country> AddCountryAsync(SummitService.Country cou) {
+            return base.Channel.AddCountryAsync(cou);
         }
         
-        public SummitService.Tests.ServiceReference1.Variant AddVariant(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id) {
-            return base.Channel.AddVariant(StartDate, FinishDate, country_id, user_id, summit_id);
+        public SummitService.Variant AddVariant(SummitService.Variant va) {
+            return base.Channel.AddVariant(va);
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Variant> AddVariantAsync(System.DateTime StartDate, System.DateTime FinishDate, int country_id, int user_id, int summit_id) {
-            return base.Channel.AddVariantAsync(StartDate, FinishDate, country_id, user_id, summit_id);
+        public System.Threading.Tasks.Task<SummitService.Variant> AddVariantAsync(SummitService.Variant va) {
+            return base.Channel.AddVariantAsync(va);
         }
         
-        public SummitService.Tests.ServiceReference1.Voice AddVoice(int user_id, int variant_id) {
-            return base.Channel.AddVoice(user_id, variant_id);
+        public SummitService.Voice AddVoice(SummitService.Voice vo) {
+            return base.Channel.AddVoice(vo);
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice> AddVoiceAsync(int user_id, int variant_id) {
-            return base.Channel.AddVoiceAsync(user_id, variant_id);
+        public System.Threading.Tasks.Task<SummitService.Voice> AddVoiceAsync(SummitService.Voice vo) {
+            return base.Channel.AddVoiceAsync(vo);
         }
         
         public void DeleteAllVoices() {
@@ -654,20 +139,20 @@ namespace SummitService.Tests.ServiceReference1 {
             return base.Channel.DeleteAllVoicesAsync();
         }
         
-        public SummitService.Tests.ServiceReference1.Voice[] Summarizing(int id) {
-            return base.Channel.Summarizing(id);
-        }
-        
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Voice[]> SummarizingAsync(int id) {
-            return base.Channel.SummarizingAsync(id);
-        }
-        
-        public SummitService.Tests.ServiceReference1.Country[] SelectCountry() {
+        public SummitService.Country[] SelectCountry() {
             return base.Channel.SelectCountry();
         }
         
-        public System.Threading.Tasks.Task<SummitService.Tests.ServiceReference1.Country[]> SelectCountryAsync() {
+        public System.Threading.Tasks.Task<SummitService.Country[]> SelectCountryAsync() {
             return base.Channel.SelectCountryAsync();
+        }
+        
+        public SummitService.Summit[] SelectSummit() {
+            return base.Channel.SelectSummit();
+        }
+        
+        public System.Threading.Tasks.Task<SummitService.Summit[]> SelectSummitAsync() {
+            return base.Channel.SelectSummitAsync();
         }
     }
 }

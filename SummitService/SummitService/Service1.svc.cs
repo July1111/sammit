@@ -70,6 +70,7 @@ namespace SummitService
             }
         }
 
+
         public Summit AddSummit(Summit sum)
         {
             using (SummitDBEntity summit = new SummitDBEntity())
@@ -79,10 +80,12 @@ namespace SummitService
                             .Count();
                 if (count == 0)
                 {
+
                     summit.Summits.Add(sum);
                     summit.SaveChanges();
                 }   
             }
+
             return sum;
         }
 

@@ -9,37 +9,35 @@ namespace SummitService.Tests
     {
         
         [TestMethod]
-        public void AddCountry_USA_truereturned()
+        public void AddCountry_USA_falsereturned()
         {
-            //arrange
-            string country = "USA";
-           
-            bool expected = true;
-
-            //act
-            Service1Client client = new Service1Client("BasicHttpBinding_IService1");
-            var result = client.AddCountry(country);
-
-            //assert
-            Assert.AreEqual(expected, result.error);
+            var client = new Service1();
+            int CountryBefore = client.SelectCountry().Count;
+            Country co = new Country
+            {
+                Name = "USA"
+            };
+            Country co1 = new Country();
+            co1 = client.AddCountry(co);
+            int CountryAfter = client.SelectCountry().Count;
+            Assert.AreEqual(CountryBefore + 1, CountryAfter);
         }
 
         [TestMethod]
-        public void AddSummit_Big7_truereturned()
+        public void AddSummit_Big7_falsereturned()
         {
-            //arrange
-            string summit = "Big10";
-            DateTime date = DateTime.Today;
-            bool expected = true;
-
-            //act
-            Service1Client client = new Service1Client("BasicHttpBinding_IService1");
-            var result = client.AddSummit(summit, date);
-
-            //assert
-            Assert.AreEqual(expected, result.error);
+            var client = new Service1();
+            int SumBefore = client.SelectSummit().Count;
+            Summit su = new Summit
+            {
+                Name = "Big7"
+            };
+            Summit su1 = new Summit();
+            su1 = client.AddSummit(su);
+            int SumAfter = client.SelectSummit().Count;
+            Assert.AreEqual(SumBefore + 1, SumAfter);
         }
-
+        /*
         [TestMethod]
         public void AddVariant_1_1_1_truereturned()
         {
@@ -57,8 +55,8 @@ namespace SummitService.Tests
 
             //assert
             Assert.AreEqual(expected, result.error);
-        }
-
+        }*/
+        /*
         [TestMethod]
         public void AddVoice_1_1_true_returned()
         {
@@ -73,6 +71,6 @@ namespace SummitService.Tests
 
             //assert
             Assert.AreEqual(expected, result.error);
-        }
+        }*/
     }
 }
