@@ -136,13 +136,15 @@ namespace SummitService
                 return vo;
             }
         }
-        /*
-        public List<Voice> Summarizing()
+        
+        /*public List<Voice> Summarizing()
         {
-            string sqlExpression = "Summarizing";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //string sqlExpression = "Summarizing";
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
+
+                /*connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection)
                 {
                     CommandType = System.Data.CommandType.StoredProcedure
@@ -176,97 +178,36 @@ namespace SummitService
                 }
 
             }
-        }
+        }*/
 
         public List<Country> SelectCountry()
         {
-            string sqlExpression = "SelectCountry";
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using(SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                var reader = command.ExecuteReader();
-
-                List<Country> summarizing = new List<Country>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Country cli = new Country
-                        {
-                            Country_ID = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        };
-                        summarizing.Add(cli);
-                    }
-                    return summarizing;
-                }
-                else
-                {
-                    return null;
-                }
-
+                List<Country> co = summit.Countries.ToList();
+                return co;
             }
         }
 
         public void DeleteAllVoices()
         {
-            string sqlExpression = "DeleteAllVoices";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-                var result = command.ExecuteScalar();
-                connection.Close();
+                foreach (var s in summit.Voices)
+                summit.Voices.Remove(s);
+                summit.SaveChanges();
             }
         }
 
         public List<Summit> SelectSummit()
         {
-            string sqlExpression = "SelectSummit";
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SummitDBEntity summit = new SummitDBEntity())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
-
-                var reader = command.ExecuteReader();
-
-                List<Summit> summ = new List<Summit>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Summit summit = new Summit
-                        {
-                            Summit_ID = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        };
-                        summ.Add(summit);
-                    }
-                    return summ;
-                }
-                else
-                {
-                    return null;
-                }
-
+                List<Summit> su = summit.Summits.ToList();
+                return su;
             }
         }
-
+/*
         public ObservableCollection<Variant> SelectVariant(int summit_id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -342,57 +283,13 @@ namespace SummitService
     }
 }
 
-
-/*
-public class Voice
-{
-    public int user_id;
-    public int variant_id;
-    public int sum;
-    public bool error;
-    public string error_message;
-    public string country_name;
-    public DateTime start_date;
-    public DateTime finish_date;
-}
-
-public class Variant
-{
-    public int variant_id;
-    public DateTime StartDate;
-    public DateTime FinishDate;
-    public string country;
-    public string user;
-    public int country_id;
-    public int user_id;
-    public int summit_id;
-    public bool error;
-    public string error_message;
-}
-
-public class Summit
-    {
-        public int Summit_ID;
-        public string Name;
-        public DateTime Date;
-        public bool error;
-        public string error_message;
-    }*/
-
 public class Auth
     {
         public bool error;
         public string error_message;
         public int id_user;
     }
-/*
-public class Country
-{
-    public bool error;
-    public string error_message;
-    public int Country_ID;
-    public string Name;
-}*/
+
 
 
 

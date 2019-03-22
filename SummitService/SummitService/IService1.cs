@@ -30,16 +30,16 @@ namespace SummitService
 
         [OperationContract]
         void DeleteAllVoices();
-
+/*
         [OperationContract]
         List<Voice> Summarizing();
-
+*/
         [OperationContract]
         List<Country> SelectCountry();
 
         [OperationContract]
         List<Summit> SelectSummit();
-
+/*
         [OperationContract]
         ObservableCollection<Variant> SelectVariant(int summit_id);
 
