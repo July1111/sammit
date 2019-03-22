@@ -26,8 +26,8 @@ namespace SummitService
         Variant AddVariant(Variant va);
         
         [OperationContract]
-        Voice AddVoice(int user_id, int variant_id);
-        
+        Voice AddVoice(Voice vo);
+
         [OperationContract]
         void DeleteAllVoices();
 
