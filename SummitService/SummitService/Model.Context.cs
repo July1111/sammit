@@ -24,7 +24,26 @@ namespace SummitService
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<User>().Map(m =>
+            {
+                m.Properties(t => new { t.ID_User });
+                m.Property(t => t.FIO).HasColumnName("FIO");
+            }).Map(m =>
+            {
+                m.Property(t => t.ID_User).HasColumnName("ID_User");
+                m.Properties(t => new { t.Login, t.Password });
+                m.ToTable("UserDetails");
+            });
+            modelBuilder.Entity<User>().Map(m =>
+            {
+                m.Properties(t => new { t.ID_User });
+                m.Property(t => t.FIO).HasColumnName("FIO");
+            }).Map(m =>
+            {
+                m.Property(t => t.ID_User).HasColumnName("ID_User");
+                m.Properties(t => new { t.Login, t.Password });
+                m.ToTable("UsersDetails");
+            });
         }
     
         public virtual DbSet<Country> Countries { get; set; }
@@ -234,5 +253,7 @@ namespace SummitService
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Summarizing_Result>("Summarizing");
         }
+
+
     }
 }

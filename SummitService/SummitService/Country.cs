@@ -6,7 +6,8 @@
 //     Изменения, вносимые в этот файл вручную, будут перезаписаны при повторном создании кода.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 namespace SummitService
 {
     using System;
@@ -16,5 +17,15 @@ namespace SummitService
     {
         public int ID_Country { get; set; }
         public string Name { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> errors = new List<ValidationResult>();
+            if (string.IsNullOrWhiteSpace(this.Name))
+                errors.Add(new ValidationResult("Не указано название страны"));
+            return errors;
+        }
     }
+
+
 }

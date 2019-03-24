@@ -15,7 +15,7 @@ namespace SummitService.Tests
             int CountryBefore = client.SelectCountry().Count;
             Country co = new Country
             {
-                Name = "USA"
+                Name = "USAa"
             };
             Country co1 = new Country();
             co1 = client.AddCountry(co);
@@ -30,7 +30,7 @@ namespace SummitService.Tests
             int SumBefore = client.SelectSummit().Count;
             Summit su = new Summit
             {
-                Name = "Big7"
+                Name = "Big7a"
             };
             Summit su1 = new Summit();
             su1 = client.AddSummit(su);

@@ -196,12 +196,22 @@ namespace SummitService
         {
             using (SummitDBEntity summit = new SummitDBEntity())
             {
-                foreach (var s in summit.Voices)
-                summit.Voices.Remove(s);
-                summit.SaveChanges();
+                using (var transaction = summit.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var s in summit.Voices)
+                        summit.Voices.Remove(s);
+                        summit.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                    }
+                }
             }
         }
-
         public List<Summit> SelectSummit()
         {
             using (SummitDBEntity summit = new SummitDBEntity())
